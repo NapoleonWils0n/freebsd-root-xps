@@ -1,0 +1,86 @@
+#+TITLE: freebsd root dotfiles
+#+STARTUP: content
+#+STARTUP: overview hideblocks
+#+OPTIONS: num:nil author:nil
+#+PROPERTY: header-args :mkdirp yes
+* tangle dotfiles
+** tangle document
+
+C-c C-v t
+
+** tangle only one code block
+
+C-u C-c C-v t
+
+** tangle from the command line
+
+tangle file from the command line
+where ~/git/freebsd/freebsd-root/freebsd-root.org is the path of the file to tangle
+
+#+begin_src sh
+emacs --batch -l org --eval '(org-babel-tangle-file "~/git/freebsd/freebsd-root/freebsd-root.org")'
+#+end_src
+
+* freebsd root dotfiles
+** doas
+*** doas config
+
+#+NAME: doas
+#+BEGIN_SRC conf
+# permit user
+permit keepenv :djwilcox
+
+# mount drives
+permit nopass :djwilcox cmd mount
+permit nopass :djwilcox cmd umount
+
+# restart networking
+permit nopass :djwilcox cmd service args netif start
+permit nopass :djwilcox cmd service args netif stop
+permit nopass :djwilcox cmd service args netif restart
+
+# ifconfig wlan0
+permit nopass :djwilcox cmd ifconfig args wlan0 up
+permit nopass :djwilcox cmd ifconfig args wlan0 down
+
+# ifconfig ue0 - usb ethenet
+permit nopass :djwilcox cmd ifconfig args ue0 up
+permit nopass :djwilcox cmd ifconfig args ue0 down
+
+# ifconfig bge0 - thunderbolt ethernet
+permit nopass :djwilcox cmd ifconfig args bge0 up
+permit nopass :djwilcox cmd ifconfig args bge0 down
+
+# ifconfig scan and wpa_supplicant
+permit nopass :djwilcox cmd ifconfig args wlan0 list scan
+permit nopass :djwilcox cmd wpa_supplicant args -B -i wlan0 -c /etc/wpa_supplicant.conf 
+
+# musicpd service start and stop
+permit nopass :djwilcox cmd service args musicpd onestart
+permit nopass :djwilcox cmd service args musicpd onestop
+
+# pkg update
+permit nopass :djwilcox cmd pkg args update
+
+# root as root
+permit nopass keepenv root as root
+#+END_SRC
+
+*** doas tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: doas-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/doas.conf"
+<<doas>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: doas-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/doas.conf"
+<<doas>>
+#+END_SRC

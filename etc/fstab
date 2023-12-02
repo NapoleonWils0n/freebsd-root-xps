@@ -1,0 +1,7 @@
+# Device		Mountpoint	FStype	Options		Dump	Pass#
+/dev/gpt/efiboot0		/boot/efi	msdosfs	rw		2	2
+/dev/nda0p3.eli		none	swap	sw		0	0
+# linux
+proc                            /proc           procfs  rw      0       0
+linprocfs                       /compat/linux/proc	linprocfs	rw	0	0
+linsysfs                        /compat/linux/sys	linsysfs	rw	0	0
