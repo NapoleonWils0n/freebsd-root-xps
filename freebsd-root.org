@@ -23,6 +23,9 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/freebsd/freebsd-root/
 
 * freebsd root dotfiles
 ** doas
+
+/usr/local/etc/doas.conf
+
 *** doas config
 
 #+NAME: doas
@@ -83,4 +86,60 @@ permit nopass keepenv root as root
 #+NAME: doas-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/doas.conf"
 <<doas>>
+#+END_SRC
+
+** loader.conf
+
+/boot/loader.conf
+
+*** loader.conf config
+
+#+NAME: loader.conf
+#+BEGIN_SRC conf
+aesni_load="YES"
+geom_eli_load="YES"
+security.bsd.allow_destructive_dtrace=0
+kern.geom.label.disk_ident.enable="0"
+kern.geom.label.gptid.enable="0"
+cryptodev_load="YES"
+zfs_load="YES"
+# nullfs tmpfs for poudriere
+nullfs_load="YES"
+tmpfs_load="YES"
+# audio
+snd_hda_load="YES"
+snd_uaudio_load="YES"
+# coretemp
+acpi_video_load="YES"
+coretemp_load="YES"
+# touchpad
+wsp_load="YES"
+# async i/o
+aio_load="YES"
+# cuse audio for virtual_oss
+cuse_load="YES"
+# virtual oss - start with: sudo sysrc onestart virtual_oss 
+virtual_oss_enable="NO"
+# mixertui
+sysctlinfo_load="YES"
+sysctlbyname_improved_load="YES"
+#+END_SRC
+
+*** loader.conf tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: loader.conf-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/boot/loader.conf"
+<<loader.conf>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: loader.conf-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "boot/loader.conf"
+<<loader.conf>>
 #+END_SRC
