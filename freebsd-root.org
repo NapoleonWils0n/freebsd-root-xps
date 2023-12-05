@@ -24,7 +24,9 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/freebsd/freebsd-root/
 ** /boot
 *** loader.conf
 
+#+begin_example
 /boot/loader.conf
+#+end_example
 
 **** loader.conf config
 
@@ -81,7 +83,9 @@ sysctlbyname_improved_load="YES"
 ** /etc
 *** devfs.rules
 
-//etc/devfs.rules/
+#+begin_example
+/etc/devfs.rules/
+#+end_example
 
 **** devfs.rules config
 
@@ -112,7 +116,9 @@ add path 'da*' mode 0660 group operator
 
 *** fstab
 
+#+begin_example
 /etc/fstab
+#+end_example
 
 **** fstab config
 
@@ -148,7 +154,9 @@ linsysfs                        /compat/linux/sys	linsysfs	rw	0	0
 
 *** pf.conf
 
+#+begin_example
 /etc/pf.conf
+#+end_example
 
 **** pf.conf config
 
@@ -249,7 +257,9 @@ pass out quick on $int_if all modulate state
 
 *** rc.conf
 
+#+begin_example
 /etc/rc.conf
+#+end_example
 
 **** rc.conf config
 
@@ -318,7 +328,9 @@ dnscrypt_proxy_logfile="/var/log/dnscrypt-proxy.log"
 
 *** resolv.conf
 
+#+begin_example
 /etc/resolv.conf
+#+end_example
 
 **** resolv.conf config
 
@@ -353,7 +365,9 @@ options edns0
 
 *** sysctl.conf
 
+#+begin_example
 /etc/sysctl.conf
+#+end_example
 
 **** sysctl.conf config
 
@@ -413,7 +427,9 @@ hw.acpi.video.lcd0.brightness=100
 
 *** ttys
 
+#+begin_example
 /etc/ttys
+#+end_example
 
 **** ttys config
 
@@ -492,10 +508,16 @@ rcons	"/usr/libexec/getty std.115200"	vt100	onifconsole insecure
 <<ttys>>
 #+END_SRC
 
+*** unbound
+**** conf.d
+**** forward.conf
+**** unbound_outgoing_interface
 ** /usr/local/etc
 *** doas
 
+#+begin_example
 /usr/local/etc/doas.conf
+#+end_example
 
 **** doas config
 
