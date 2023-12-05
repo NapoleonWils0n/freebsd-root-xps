@@ -21,7 +21,7 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/freebsd/freebsd-root/
 #+end_src
 
 * freebsd root dotfiles
-** boot
+** /boot
 *** loader.conf
 
 /boot/loader.conf
@@ -78,7 +78,7 @@ sysctlbyname_improved_load="YES"
 <<loader.conf>>
 #+END_SRC
 
-** etc
+** /etc
 *** devfs.rules
 
 //etc/devfs.rules/
@@ -247,11 +247,12 @@ pass out quick on $int_if all modulate state
 <<pf.conf>>
 #+END_SRC
 
-** doas
+** /usr/local/etc
+*** doas
 
 /usr/local/etc/doas.conf
 
-*** doas config
+**** doas config
 
 #+NAME: doas
 #+BEGIN_SRC conf
@@ -294,7 +295,7 @@ permit nopass :djwilcox cmd pkg args update
 permit nopass keepenv root as root
 #+END_SRC
 
-*** doas tangle
+**** doas tangle
 :PROPERTIES:
 :ORDERED:  t
 :END:
