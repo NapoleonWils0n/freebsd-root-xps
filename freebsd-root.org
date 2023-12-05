@@ -1693,3 +1693,36 @@ DISABLE_LICENSES=yes
 <<make.conf>>
 #+END_SRC
 
+
+**** port-list
+
+#+begin_example
+/usr/local/etc/poudriere.d/port-list
+#+end_example
+
+***** port-list config
+
+#+NAME: port-list
+#+BEGIN_SRC conf
+www/linux-widevine-cdm
+
+#+END_SRC
+
+***** port-list tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: port-list-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/poudriere.d/port-list"
+<<port-list>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: port-list-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/poudriere.d/port-list"
+<<port-list>>
+#+END_SRC
