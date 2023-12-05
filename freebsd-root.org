@@ -1659,3 +1659,37 @@ PKG_REPO_SIGNING_KEY=/usr/local/etc/ssl/keys/poudriere.key
 #+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/poudriere.conf"
 <<poudriere.conf>>
 #+END_SRC
+
+*** poudriere.d
+**** make.conf
+
+#+begin_example
+/usr/local/etc/poudriere.d/make.conf
+#+end_example
+
+***** make.conf config
+
+#+NAME: make.conf
+#+BEGIN_SRC conf
+DISABLE_LICENSES=yes
+#+END_SRC
+
+***** make.conf tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: make.conf-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/poudriere.d/make.conf"
+<<make.conf>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: make.conf-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/poudriere.d/make.conf"
+<<make.conf>>
+#+END_SRC
+
