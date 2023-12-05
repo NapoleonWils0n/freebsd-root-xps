@@ -510,6 +510,56 @@ rcons	"/usr/libexec/getty std.115200"	vt100	onifconsole insecure
 
 *** unbound
 **** conf.d
+***** custom.conf
+
+#+begin_example
+/etc/unbound/conf.d/custom.conf
+#+end_example
+
+****** custom.conf config
+
+#+NAME: custom.conf
+#+BEGIN_SRC conf
+server:
+# include: "/etc/unbound/unbound_outgoing_interface"
+	verbosity: 1
+	access-control: 0.0.0.0/0 refuse
+	access-control: 127.0.0.0/8 allow
+	access-control: ::0/0 refuse
+	access-control: ::1 allow
+	access-control: ::ffff:127.0.0.1 allow
+	
+	# enable to not answer id.server and hostname.bind queries.
+	hide-identity: yes
+	hide-version: yes
+	harden-glue: yes
+	harden-dnssec-stripped: yes
+	
+        # dont query localhost needed for dnscrypt-proxy
+        do-not-query-localhost: no
+# remote-control:
+#	control-enable: no
+#+END_SRC
+
+****** custom.conf tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: custom.conf-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/unbound/conf.d/custom.conf"
+<<custom.conf>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: custom.conf-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/unbound/conf.d/custom.conf"
+<<custom.conf>>
+#+END_SRC
+
 **** forward.conf
 
 #+begin_example
