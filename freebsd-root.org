@@ -1183,6 +1183,47 @@ cache_neg_max_ttl = 600
 <<dnscrypt-proxy.toml>>
 #+END_SRC
 
+*** pkg
+**** repos
+***** pkg/repos/poudriere.conf
+
+#+begin_example
+/usr/local/etc/pkg/repos/poudriere.conf
+#+end_example
+
+****** pkg/repos/poudriere.conf config
+
+#+NAME: pkg/repos/poudriere.conf
+#+BEGIN_SRC conf
+Poudriere: {
+    url: "file:///usr/local/poudriere/data/packages/freebsd_14-0x64-HEAD"
+    mirror_type: "srv",
+    signature_type: "pubkey",
+    pubkey: "/usr/local/etc/ssl/certs/poudriere.cert",
+    enabled: yes,
+    priority: 100
+}
+#+END_SRC
+
+****** pkg/repos/poudriere.conf tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: pkg/repos/poudriere.conf-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/pkg/repos/poudriere.conf"
+<<pkg/repos/poudriere.conf>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: pkg/repos/poudriere.conf-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/pkg/repos/poudriere.conf"
+<<pkg/repos/poudriere.conf>>
+#+END_SRC
+
 *** doas
 
 #+begin_example
