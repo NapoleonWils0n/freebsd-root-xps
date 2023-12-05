@@ -1,5 +1,4 @@
 #+TITLE: freebsd root dotfiles
-#+STARTUP: content
 #+STARTUP: overview hideblocks
 #+OPTIONS: num:nil author:nil
 #+PROPERTY: header-args :mkdirp yes
@@ -22,11 +21,12 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/freebsd/freebsd-root/
 #+end_src
 
 * freebsd root dotfiles
-** loader.conf
+** boot
+*** loader.conf
 
 /boot/loader.conf
 
-*** loader.conf config
+**** loader.conf config
 
 #+NAME: loader.conf
 #+BEGIN_SRC conf
@@ -59,7 +59,7 @@ sysctlinfo_load="YES"
 sysctlbyname_improved_load="YES"
 #+END_SRC
 
-*** loader.conf tangle
+**** loader.conf tangle
 :PROPERTIES:
 :ORDERED:  t
 :END:
@@ -78,11 +78,12 @@ sysctlbyname_improved_load="YES"
 <<loader.conf>>
 #+END_SRC
 
-** devfs.rules
+** etc
+*** devfs.rules
 
 //etc/devfs.rules/
 
-*** devfs.rules config
+**** devfs.rules config
 
 #+NAME: devfs.rules
 #+BEGIN_SRC conf
@@ -90,7 +91,7 @@ sysctlbyname_improved_load="YES"
 add path 'da*' mode 0660 group operator
 #+END_SRC
 
-*** devfs.rules tangle
+**** devfs.rules tangle
 :PROPERTIES:
 :ORDERED:  t
 :END:
@@ -109,11 +110,11 @@ add path 'da*' mode 0660 group operator
 <<devfs.rules>>
 #+END_SRC
 
-** fstab
+*** fstab
 
 /etc/fstab
 
-*** fstab config
+**** fstab config
 
 #+NAME: fstab
 #+BEGIN_SRC conf
@@ -126,7 +127,7 @@ linprocfs                       /compat/linux/proc	linprocfs	rw	0	0
 linsysfs                        /compat/linux/sys	linsysfs	rw	0	0
 #+END_SRC
 
-*** fstab tangle
+**** fstab tangle
 :PROPERTIES:
 :ORDERED:  t
 :END:
@@ -145,11 +146,11 @@ linsysfs                        /compat/linux/sys	linsysfs	rw	0	0
 <<fstab>>
 #+END_SRC
 
-** pf.conf
+*** pf.conf
 
 /etc/pf.conf
 
-*** pf.conf config
+**** pf.conf config
 
 #+NAME: pf.conf
 #+BEGIN_SRC conf
@@ -227,7 +228,7 @@ pass out quick on $int_if all modulate state
 #pass out quick on $int_if from <myself> to <internet> modulate state tag INTERNET_OUT
 #+END_SRC
 
-*** pf.conf tangle
+**** pf.conf tangle
 :PROPERTIES:
 :ORDERED:  t
 :END:
