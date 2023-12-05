@@ -247,6 +247,75 @@ pass out quick on $int_if all modulate state
 <<pf.conf>>
 #+END_SRC
 
+*** rc.conf
+
+/etc/rc.conf
+
+**** rc.conf config
+
+#+NAME: rc.conf
+#+BEGIN_SRC conf
+zfs_enable="YES"
+clear_tmp_enable="YES"
+syslogd_flags="-ss"
+hostname="pollux"
+ifconfig_ue0="DHCP"
+local_unbound_enable="YES"
+sshd_enable="NO"
+moused_enable="YES"
+# Set dumpdev to "AUTO" to enable crash dumps, "NO" to disable
+dumpdev="AUTO"
+# pf firewall
+pf_enable="YES"
+# time and date
+ntpd_enable="YES"
+ntpd_sync_on_start="YES"
+# power settings
+powerd_enable="YES"
+powerd_flags="-a hiadaptive -b adaptive"
+performance_cx_lowest="Cmax"
+economy_cx_lowest="Cmax"
+# kld list 
+kld_list="nvidia-modeset nvidia-drm linux linux64 i915kms ext2fs"
+# wayland
+seatd_enable="YES"
+# dbus
+dbus_enable="YES"
+# linux
+linux_enable="YES"
+# virtual oss - start with: sudo sysrc onestart virtual_oss 
+virtual_oss_enable="NO"
+# sndiod audio
+sndiod_enable="YES"
+# devfs rules for user mounting drives
+devfs_system_ruleset="localrules"
+# ralink wifi
+wlans_run0="wlan0"
+ifconfig_wlan0="WPA SYNDHCP"
+dnscrypt_proxy_enable="YES"
+dnscrypt_proxy_pidfile="/var/run/dnscrypt-proxy.pid"
+dnscrypt_proxy_logfile="/var/log/dnscrypt-proxy.log"
+#+END_SRC
+
+**** rc.conf tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: rc.conf-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/rc.conf"
+<<rc.conf>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: rc.conf-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/rc.conf"
+<<rc.conf>>
+#+END_SRC
+
 ** /usr/local/etc
 *** doas
 
