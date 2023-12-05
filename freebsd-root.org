@@ -351,6 +351,66 @@ options edns0
 <<resolv.conf>>
 #+END_SRC
 
+*** sysctl.conf
+
+/etc/sysctl.conf
+
+**** sysctl.conf config
+
+#+NAME: sysctl.conf
+#+BEGIN_SRC conf
+#
+#  This file is read when going to multi-user and its contents piped thru
+#  ``sysctl'' to adjust kernel values.  ``man 5 sysctl.conf'' for details.
+#
+
+# Uncomment this to prevent users from seeing information about processes that
+# are being run under another UID.
+#security.bsd.see_other_uids=0
+security.bsd.see_other_uids=0
+security.bsd.see_other_gids=0
+security.bsd.see_jail_proc=0
+security.bsd.unprivileged_read_msgbuf=0
+security.bsd.unprivileged_proc_debug=0
+kern.randompid=1
+vfs.zfs.min_auto_ashift=12
+# disable bell
+hw.syscons.bell=0
+# user mount drives
+vfs.usermount=1
+# default audio output - headphones
+hw.snd.default_unit=1
+# use new audio devices automatically
+hw.snd.default_auto=1
+# chromium
+kern.ipc.shm_allow_removed=1
+# change reponsiveness from server to desktop
+kern.sched.preempt_thresh=224
+# screen brightness
+hw.acpi.video.lcd0.economy=50
+hw.acpi.video.lcd0.fullpower=100
+hw.acpi.video.lcd0.brightness=100
+#+END_SRC
+
+**** sysctl.conf tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: sysctl.conf-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/sysctl.conf"
+<<sysctl.conf>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: sysctl.conf-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/sysctl.conf"
+<<sysctl.conf>>
+#+END_SRC
+
 ** /usr/local/etc
 *** doas
 
