@@ -396,6 +396,8 @@ vfs.usermount=1
 hw.snd.default_unit=1
 # use new audio devices automatically
 hw.snd.default_auto=1
+# dont autoreset vol to default
+hw.snd.vpc_autoreset=0
 # chromium
 kern.ipc.shm_allow_removed=1
 # change reponsiveness from server to desktop
