@@ -59,6 +59,8 @@ virtual_oss_enable="NO"
 # mixertui
 sysctlinfo_load="YES"
 sysctlbyname_improved_load="YES"
+# usb keyboard multimedia keys
+usbhid_load="YES"
 #+END_SRC
 
 **** loader.conf tangle
@@ -406,6 +408,8 @@ kern.sched.preempt_thresh=224
 hw.acpi.video.lcd0.economy=50
 hw.acpi.video.lcd0.fullpower=100
 hw.acpi.video.lcd0.brightness=100
+# usb keyboard media keys
+hw.usb.usbhid.enable=1
 #+END_SRC
 
 **** sysctl.conf tangle
@@ -630,6 +634,88 @@ forward-zone:
 #+END_SRC
 
 ** /usr/local/etc
+*** usbhidaction.conf
+
+#+begin_example
+/usr/local/etc/usbhidaction.conf
+#+end_example
+
+**** usbhidaction.conf config
+
+#+NAME: usbhidaction.conf
+#+BEGIN_SRC conf
+# ducky one 2 mini
+Consumer:Volume_Increment	1 0 mixer vol +2
+Consumer:Volume_Decrement	1 0 mixer vol -2
+Consumer:Mute			1 0 mixer vol 0
+#+END_SRC
+
+**** usbhidaction.conf tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: usbhidaction.conf-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/usbhidaction.conf"
+<<usbhidaction.conf>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: usbhidaction.conf-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/usbhidaction.conf"
+<<usbhidaction.conf>>
+#+END_SRC
+
+*** devd
+**** devd.conf
+
+#+begin_example
+/usr/local/etc/devd/devd.conf
+#+end_example
+
+***** devd.conf config
+
+#+NAME: devd.conf
+#+BEGIN_SRC conf
+# ducky one 2 mini
+attach 100 {
+        device-name "uhid[0-9]+";                                                           
+        match "vendor"  "0x0416"; # (1)
+        match "product" "0x0123"; # (2)
+
+	#
+	# Do not add -d flag ! if you do it devd will never detach to background
+	# because usbhidaction will run in foreground !
+	#
+	# Remember you can add arguments after /etc/usbhidaction.conf like
+	# action "/usr/bin/usbhidaction -f $device-name -c /etc/usbhidaction.conf /dev/mixer1 2"
+	#
+        action "/usr/bin/usbhidaction -f $device-name -c /usr/local/etc/usbhidaction.conf";
+};
+#+END_SRC
+
+***** devd.conf tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: devd.conf-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/devd/devd.conf"
+<<devd.conf>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: devd.conf-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/devd/devd.conf"
+<<devd.conf>>
+#+END_SRC
+
 *** dnscrypt-proxy
 **** dnscrypt-proxy.toml
 
