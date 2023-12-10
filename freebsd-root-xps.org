@@ -61,6 +61,9 @@ sysctlinfo_load="YES"
 sysctlbyname_improved_load="YES"
 # usb keyboard multimedia keys
 usbhid_load="YES"
+# setfibs
+net.fibs=2
+net.add_addr_allfibs=0
 #+END_SRC
 
 **** loader.conf tangle
@@ -86,7 +89,7 @@ usbhid_load="YES"
 *** devfs.rules
 
 #+begin_example
-/etc/devfs.rules/
+/etc/devfs.rules
 #+end_example
 
 **** devfs.rules config
@@ -114,6 +117,40 @@ add path 'da*' mode 0660 group operator
 #+NAME: devfs.rules-current-dir
 #+BEGIN_SRC conf :noweb yes :tangle "etc/devfs.rules"
 <<devfs.rules>>
+#+END_SRC
+
+*** dhclient-enter-hooks
+
+#+begin_example
+/etc/dhclient-enter-hooks
+#+end_example
+
+**** dhclient-enter-hooks config
+
+#+NAME: dhclient-enter-hooks
+#+BEGIN_SRC conf
+add_new_resolv_conf() {
+  return 0
+}
+#+END_SRC
+
+**** dhclient-enter-hooks tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: dhclient-enter-hooks-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/dhclient-enter-hooks"
+<<dhclient-enter-hooks>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: dhclient-enter-hooks-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/dhclient-enter-hooks"
+<<dhclient-enter-hooks>>
 #+END_SRC
 
 *** fstab
