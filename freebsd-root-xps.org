@@ -1379,20 +1379,15 @@ permit nopass :djwilcox cmd ifconfig args wlan0 down
 permit nopass :djwilcox cmd ifconfig args ue0 up
 permit nopass :djwilcox cmd ifconfig args ue0 down
 
-# ifconfig bge0 - thunderbolt ethernet
-permit nopass :djwilcox cmd ifconfig args bge0 up
-permit nopass :djwilcox cmd ifconfig args bge0 down
-
 # ifconfig scan and wpa_supplicant
 permit nopass :djwilcox cmd ifconfig args wlan0 list scan
 permit nopass :djwilcox cmd wpa_supplicant args -B -i wlan0 -c /etc/wpa_supplicant.conf 
 
-# musicpd service start and stop
-permit nopass :djwilcox cmd service args musicpd onestart
-permit nopass :djwilcox cmd service args musicpd onestop
-
 # pkg update
 permit nopass :djwilcox cmd pkg args update
+
+# pkg upgrade
+permit nopass :djwilcox cmd pkg args upgrade
 
 # root as root
 permit nopass keepenv root as root
