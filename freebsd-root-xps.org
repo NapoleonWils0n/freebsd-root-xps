@@ -1389,6 +1389,15 @@ permit nopass :djwilcox cmd pkg args update
 # pkg upgrade
 permit nopass :djwilcox cmd pkg args upgrade
 
+# dmesg
+permit nopass :djwilcox cmd dmesg
+
+# sysctl
+permit nopass :djwilcox cmd sysctl
+
+# vpn
+permit nopass :djwilcox cmd vpn-split-route
+
 # root as root
 permit nopass keepenv root as root
 #+END_SRC
