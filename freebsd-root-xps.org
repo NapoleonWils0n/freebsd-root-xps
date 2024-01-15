@@ -336,6 +336,8 @@ linux_enable="YES"
 virtual_oss_enable="NO"
 # sndiod audio
 sndiod_enable="YES"
+# musicpd
+musicpd_enable="YES"
 # devfs rules for user mounting drives
 devfs_system_ruleset="localrules"
 # ralink wifi
@@ -671,6 +673,74 @@ forward-zone:
 #+END_SRC
 
 ** /usr/local/etc
+*** rc.d
+**** musicpd
+
+#+begin_example
+/usr/local/etc/rc.d/musicpd
+#+end_example
+
+**** musicpd config
+
+#+NAME: musicpd
+#+BEGIN_SRC sh
+#!/bin/sh
+
+# PROVIDE: musicpd
+# REQUIRE: mixer LOGIN avahi_daemon oss
+# KEYWORD: shutdown
+
+# Add the following line to /etc/rc.conf to enable mpd:
+#
+# musicpd_enable=YES
+
+. /etc/rc.subr
+
+name=musicpd
+rcvar=musicpd_enable
+desc="Music Player Daemon"
+
+load_rc_config $name
+
+: ${musicpd_enable:=NO}
+
+command=/usr/local/bin/musicpd
+command_args=/home/djwilcox/.config/mpd/mpd.conf
+required_files=/home/djwilcox/.config/mpd/mpd.conf
+start_precmd=${name}_getpidfile
+stop_precmd=${name}_getpidfile
+
+musicpd_getpidfile()
+{
+	if get_pidfile_from_conf pid_file /home/djwilcox/.config/mpd/mpd.conf ; then
+		pidfile="$_pidfile_from_conf"
+	else
+		pidfile="/var/mpd/.mpd/pid"
+	fi
+}
+
+run_rc_command $1
+#+END_SRC
+
+**** musicpd tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: musicpd-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/rc.d/musicpd"
+<<musicpd>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: musicpd-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/rc.d/musicpd"
+<<musicpd>>
+#+END_SRC
+
 *** usbhidaction.conf
 
 #+begin_example
