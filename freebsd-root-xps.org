@@ -1470,6 +1470,9 @@ permit nopass :djwilcox cmd dmesg
 # sysctl
 permit nopass :djwilcox cmd sysctl
 
+# chroot
+permit nopass :djwilcox cmd chroot
+
 # root as root
 permit nopass keepenv root as root
 #+END_SRC
