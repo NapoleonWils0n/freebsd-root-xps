@@ -168,8 +168,11 @@ add_new_resolv_conf() {
 /dev/nda0p3.eli		none	swap	sw		0	0
 # linux
 proc                            /proc           procfs  rw      0       0
-linprocfs                       /compat/linux/proc	linprocfs	rw	0	0
-linsysfs                        /compat/linux/sys	linsysfs	rw	0	0
+#linprocfs                       /compat/linux/proc	linprocfs	rw	0	0
+#linsysfs                        /compat/linux/sys	linsysfs	rw	0	0
+
+# mount video from host to chroot
+/home/djwilcox/video           /compat/ubuntu/home/djwilcox/video     nullfs          rw,late                      0       0
 #+END_SRC
 
 **** fstab tangle
