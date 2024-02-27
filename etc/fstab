@@ -7,4 +7,4 @@ proc                            /proc           procfs  rw      0       0
 #linsysfs                        /compat/linux/sys	linsysfs	rw	0	0
 
 # mount video from host to chroot
-/home/djwilcox/video           /compat/ubuntu/home/djwilcox/video     nullfs          rw,late                      0       0
+/home/djwilcox/video           /compat/ubuntu/home/djwilcox/video     nullfs          rw,noauto                      0       0
