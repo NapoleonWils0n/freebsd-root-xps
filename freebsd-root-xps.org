@@ -85,6 +85,118 @@ net.add_addr_allfibs=0
 <<loader.conf>>
 #+END_SRC
 
+** /compat
+*** ubuntu
+**** etc
+***** apt
+****** sources.list
+
+#+begin_example
+/compat/ubuntu/etc/apt/sources.list
+#+end_example
+
+****** sources.list config
+
+#+NAME: sources-list
+#+begin_src conf
+deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic main restricted universe multiverse
+deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-updates main restricted universe multiverse
+deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-security main restricted universe multiverse
+#+end_src
+
+****** sources.list tangle
+
++ root dir
+
+#+NAME: sources-list-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/compat/ubuntu/etc/apt/sources.list"
+<<sources-list>>
+#+END_SRC
+  
++ current dir
+  
+#+NAME: sources-list-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "compat/ubuntu/etc/apt/sources.list"
+<<sources-list>>
+#+END_SRC
+
+***** default
+****** locale
+
+#+begin_example
+/compat/ubuntu/etc/default/locale
+#+end_example
+
+****** locale config
+
+#+NAME: locale-ubuntu
+#+begin_src conf
+LANG=en_GB.UTF-8
+LANGUAGE=
+LC_CTYPE="en_GB.UTF-8"
+LC_NUMERIC="en_GB.UTF-8"
+LC_TIME="en_GB.UTF-8"
+LC_COLLATE=C
+LC_MONETARY="en_GB.UTF-8"
+LC_MESSAGES="en_GB.UTF-8"
+LC_PAPER="en_GB.UTF-8"
+LC_NAME="en_GB.UTF-8"
+LC_ADDRESS="en_GB.UTF-8"
+LC_TELEPHONE="en_GB.UTF-8"
+LC_MEASUREMENT="en_GB.UTF-8"
+LC_IDENTIFICATION="en_GB.UTF-8"
+LC_ALL=
+#+end_src
+
+****** locale tangle
+
++ root dir
+
+#+NAME: locale-ubuntu-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/compat/ubuntu/etc/default/locale"
+<<locale-ubuntu>>
+#+END_SRC
+  
++ current dir
+  
+#+NAME: locale-ubuntu-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "compat/ubuntu/etc/default/locale"
+<<locale-ubuntu>>
+#+END_SRC
+
+***** modprobe.d
+****** blacklist-nvidia-nouveau.conf
+
+#+begin_example
+/compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf
+#+end_example
+
+****** blacklist-nvidia-nouveau.conf conf
+
+#+NAME: blacklist-nvidia-nouveau
+#+begin_src conf
+blacklist nouveau
+options nouveau modeset=0
+#+end_src
+
+****** blacklist-nvidia-nouveau.conf tangle
+
++ root dir
+
+#+NAME: blacklist-nvidia-nouveau-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf"
+<<blacklist-nvidia-nouveau>>
+#+END_SRC
+  
++ current dir
+  
+#+NAME: blacklist-nvidia-nouveau-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf"
+<<blacklist-nvidia-nouveau>>
+#+END_SRC
+
+**** home
+**** user
 ** /etc
 *** devfs.rules
 
