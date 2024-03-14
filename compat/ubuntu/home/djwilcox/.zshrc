@@ -8,7 +8,8 @@ HISTSIZE=1000
 
 # variables for PS3 prompt
 newline=$'\n'
-yesmaster='Yes Master ? '
+#yesmaster='Yes Master ? '
+yesmaster='Linux ? '
 
 # PS3 prompt function
 function zle-line-init zle-keymap-select {
