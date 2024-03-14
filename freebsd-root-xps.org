@@ -196,6 +196,11 @@ options nouveau modeset=0
 #+END_SRC
 
 **** home
+***** .config
+****** pulse
+****** gpu
+***** zshrc
+***** zshenv
 **** usr/local/bin
 ***** wrapper-resolve
 
