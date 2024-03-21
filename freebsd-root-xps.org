@@ -642,6 +642,46 @@ proc                            /proc           procfs  rw      0       0
 <<fstab>>
 #+END_SRC
 
+*** jail.conf
+
+#+begin_example
+/etc/jail.conf
+#+end_example
+
+**** jail.conf config
+
+#+NAME: jail
+#+BEGIN_SRC conf
+# startup/logging
+exec.start = "/bin/sh /etc/rc";
+exec.stop = "/bin/sh /etc/rc.shutdown";
+exec.consolelog = "/var/log/jail_console_${name}.log";
+
+# permissions
+allow.raw_sockets;
+exec.clean;
+mount.devfs;
+#+END_SRC
+
+**** jail.conf tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
++ root dir
+
+#+NAME: jail-root-dir
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/jail.conf"
+<<jail>>
+#+END_SRC
+  
++ current dir
+
+#+NAME: jail-current-dir
+#+BEGIN_SRC conf :noweb yes :tangle "etc/jail.conf"
+<<jail>>
+#+END_SRC
+
 *** pf.conf
 
 #+begin_example
@@ -684,6 +724,8 @@ set loginterface $int_if
 set fingerprints "/etc/pf.os"
 set skip on lo0
 scrub in all fragment reassemble no-df max-mss 1440
+# nat jail
+nat on $int_if from {lo1:network} to any -> ($int_if)
 antispoof log quick for { lo $int_if } label "block_spoofing"
 
 #=========================================================================#
@@ -782,8 +824,8 @@ seatd_enable="YES"
 # dbus
 dbus_enable="YES"
 # linux
-linux_enable="NO"
-ubuntu_enable="YES"
+linux_enable="YES"
+ubuntu_enable="NO"
 # virtual oss - start with: sudo sysrc onestart virtual_oss 
 virtual_oss_enable="NO"
 # sndiod audio
@@ -804,6 +846,9 @@ dnscrypt_proxy_pidfile="/var/run/dnscrypt-proxy.pid"
 dnscrypt_proxy_logfile="/var/log/dnscrypt-proxy.log"
 # jail enable
 jail_enable="YES"
+# cloned loopback interface for jail
+cloned_interfaces="lo1"
+ifconfig_lo1_aliases="inet 10.10.0.1-12/24"
 #+END_SRC
 
 **** rc.conf tangle
