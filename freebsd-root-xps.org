@@ -85,454 +85,6 @@ net.add_addr_allfibs=0
 <<loader.conf>>
 #+END_SRC
 
-** /compat
-*** ubuntu
-**** etc
-***** apt
-****** sources.list
-
-#+begin_example
-/compat/ubuntu/etc/apt/sources.list
-#+end_example
-
-****** sources.list config
-
-#+NAME: sources-list
-#+begin_src conf
-deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic main restricted universe multiverse
-deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-updates main restricted universe multiverse
-deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ mantic-security main restricted universe multiverse
-#+end_src
-
-****** sources.list tangle
-
-+ root dir
-
-#+NAME: sources-list-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/compat/ubuntu/etc/apt/sources.list"
-<<sources-list>>
-#+END_SRC
-  
-+ current dir
-  
-#+NAME: sources-list-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "compat/ubuntu/etc/apt/sources.list"
-<<sources-list>>
-#+END_SRC
-
-***** default
-****** locale
-
-#+begin_example
-/compat/ubuntu/etc/default/locale
-#+end_example
-
-****** locale config
-
-#+NAME: locale-ubuntu
-#+begin_src conf
-LANG=en_GB.UTF-8
-LANGUAGE=
-LC_CTYPE="en_GB.UTF-8"
-LC_NUMERIC="en_GB.UTF-8"
-LC_TIME="en_GB.UTF-8"
-LC_COLLATE=C
-LC_MONETARY="en_GB.UTF-8"
-LC_MESSAGES="en_GB.UTF-8"
-LC_PAPER="en_GB.UTF-8"
-LC_NAME="en_GB.UTF-8"
-LC_ADDRESS="en_GB.UTF-8"
-LC_TELEPHONE="en_GB.UTF-8"
-LC_MEASUREMENT="en_GB.UTF-8"
-LC_IDENTIFICATION="en_GB.UTF-8"
-LC_ALL=
-#+end_src
-
-****** locale tangle
-
-+ root dir
-
-#+NAME: locale-ubuntu-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/compat/ubuntu/etc/default/locale"
-<<locale-ubuntu>>
-#+END_SRC
-  
-+ current dir
-  
-#+NAME: locale-ubuntu-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "compat/ubuntu/etc/default/locale"
-<<locale-ubuntu>>
-#+END_SRC
-
-***** modprobe.d
-****** blacklist-nvidia-nouveau.conf
-
-#+begin_example
-/compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf
-#+end_example
-
-****** blacklist-nvidia-nouveau.conf conf
-
-#+NAME: blacklist-nvidia-nouveau
-#+begin_src conf
-blacklist nouveau
-options nouveau modeset=0
-#+end_src
-
-****** blacklist-nvidia-nouveau.conf tangle
-
-+ root dir
-
-#+NAME: blacklist-nvidia-nouveau-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf"
-<<blacklist-nvidia-nouveau>>
-#+END_SRC
-  
-+ current dir
-  
-#+NAME: blacklist-nvidia-nouveau-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "compat/ubuntu/etc/modprobe.d/blacklist-nvidia-nouveau.conf"
-<<blacklist-nvidia-nouveau>>
-#+END_SRC
-
-**** home
-***** .config
-****** pulse
-******* client.conf
-
-#+begin_example
-/compat/ubuntu/home/djwilcox/.config/pulse/client.conf
-#+end_example
-
-******* client.conf config
-
-#+NAME: client.conf
-#+begin_src conf
-# This file is part of PulseAudio.
-#
-# PulseAudio is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Lesser General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# PulseAudio is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# General Public License for more details.
-#
-# You should have received a copy of the GNU Lesser General Public License
-# along with PulseAudio; if not, see <http://www.gnu.org/licenses/>.
-
-## Configuration file for PulseAudio clients. See pulse-client.conf(5) for
-## more information. Default values are commented out.  Use either ; or # for
-## commenting.
-
-; default-sink = oss_output.dsp1
-; default-source =
-default-server = /tmp/pulseaudio.socket
-; default-dbus-server =
-
-; autospawn = yes
-; daemon-binary = /usr/local/bin/pulseaudio
-; extra-arguments = --log-target=syslog
-
-; cookie-file =
-
-; enable-shm = yes
-; shm-size-bytes = 0 # setting this 0 will use the system-default, usually 64 MiB
-
-; auto-connect-localhost = no
-; auto-connect-display = no
-
-#+end_src
-
-******* client.conf tangle
-
-+ root dir
-
-#+NAME: client-conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/compat/ubuntu/home/djwilcox/.config/pulse/client.conf"
-<<client.conf>>
-#+END_SRC
-  
-+ current dir
-  
-#+NAME: client-conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "compat/ubuntu/home/djwilcox/.config/pulse/client.conf"
-<<client.conf>>
-#+END_SRC
-
-****** gpu
-******* gpu
-
-#+begin_example
-/compat/ubuntu/home/djwilcox/.config/gpu/dummy-uvm.so
-#+end_example
-
-***** zshrc
-****** zshrc config
-
-#+NAME: zshrc
-#+begin_src sh
-# ~/.zshrc
-
-# ssh zsh fix
-[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
-
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-
-# variables for PS3 prompt
-newline=$'\n'
-#yesmaster='Yes Master ? '
-yesmaster='Linux ? '
-
-# PS3 prompt function
-function zle-line-init zle-keymap-select {
-    PS1="[%n@%M %~]${newline}${yesmaster}"
-    zle reset-prompt
-}
-
-# run PS3 prompt function
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-# set terminal window title to program name
-case $TERM in
-  (*xterm* | xterm-256color)
-    function precmd {
-      print -Pn "\e]0;%(1j,%j job%(2j|s|); ,)%~\a"
-    }
-    function preexec {
-      printf "\033]0;%s\a" "$1"
-    }
-  ;;
-esac
-
-# Fix bugs when switching modes
-bindkey -v # vi mode
-bindkey "^?" backward-delete-char
-bindkey "^u" backward-kill-line
-bindkey "^a" beginning-of-line
-bindkey "^e" end-of-line
-bindkey "^k" kill-line
-
-# Use modern completion system
-autoload -Uz compinit
-compinit
-
-# Set/unset  shell options
-setopt notify globdots pushdtohome cdablevars autolist
-setopt recexact longlistjobs
-setopt autoresume histignoredups pushdsilent noclobber
-setopt autopushd pushdminus extendedglob rcquotes mailwarning
-setopt histignorealldups sharehistory
-#setopt auto_cd
-cdpath=($HOME)
-unsetopt bgnice autoparamslash
-
-# Completion Styles
-
-# list of completers to use
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
-
-# allow one error for every three characters typed in approximate completer
-zstyle -e ':completion:*:approximate:*' max-errors \
-    'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
-    
-# insert all expansions for expand completer
-zstyle ':completion:*:expand:*' tag-order all-expansions
-
-# formatting and messages
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format '%B%d%b'
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format 'No matches for: %d'
-zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
-zstyle ':completion:*' group-name ''
-
-#eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-
-# match uppercase from lowercase
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# offer indexes before parameters in subscripts
-zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
-
-# Filename suffixes to ignore during completion (except after rm command)
-zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
-    '*?.old' '*?.pro' '.hidden'
-
-# ignore completion functions (until the _ignored completer)
-zstyle ':completion:*:functions' ignored-patterns '_*'
-
-# kill - red, green, blue
-zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=22=31=34'
-
-# list optiones colour, white + cyan
-zstyle ':completion:*:options' list-colors '=(#b) #(-[a-zA-Z0-9,]#)*(-- *)=36=37'
-
-# zsh autocompletion for sudo and doas
-zstyle ":completion:*:(sudo|su|doas):*" command-path /usr/local/bin /usr/sbin /home/djwilcox/bin
-
-# rehash commands
-zstyle ':completion:*' rehash true
-
-# highlighting
-#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=cyan,underline
-#ZSH_HIGHLIGHT_STYLES[precommand]=fg=cyan,underline
-#ZSH_HIGHLIGHT_STYLES[arg0]=fg=cyan
-#ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-#ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
-
-#+end_src
-
-****** zshrc tangle
-
-+ root dir
-
-#+NAME: zshrc-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/compat/ubuntu/home/djwilcox/.zshrc"
-<<zshrc>>
-#+END_SRC
-  
-+ current dir
-  
-#+NAME: zshrc-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "compat/ubuntu/home/djwilcox/.zshrc"
-<<zshrc>>
-#+END_SRC
-
-***** zshenv
-****** zshenv config
-
-#+NAME: zshenv
-#+begin_src sh
-# ~/.zshenv
-
-# Path
-typeset -U PATH path
-path=("/opt/resolve/bin" "$path[@]")
-export PATH
-
-# xdg directories
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_RUNTIME_DIR="/var/run/user/`id -u`"
-
-# dummy-uvm.so for access to the gpu
-export LD_PRELOAD=/home/djwilcox/.config/gpu/dummy-uvm.so
-export __NV_PRIME_RENDER_OFFLOAD=1
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
-
-# wayland
-export DISPLAY=:1
-
-# qt5
-export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_QPA_PLATFORM=xcb
-#+end_src
-
-****** zshenv tangle
-
-+ root dir
-
-#+NAME: zshenv-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/compat/ubuntu/home/djwilcox/.zshenv"
-<<zshenv>>
-#+END_SRC
-  
-+ current dir
-  
-#+NAME: zshenv-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "compat/ubuntu/home/djwilcox/.zshenv"
-<<zshenv>>
-#+END_SRC
-
-**** usr/local/bin
-***** wrapper-resolve
-
-#+begin_example
-/compat/ubuntu/usr/local/bin/wrapper-resolve
-#+end_example
-
-***** wrapper-resolve config
-
-#+NAME: wrapper-resolve
-#+begin_src sh
-#!/bin/bash
-
-#===============================================================================
-# wrapper-resolve
-# switch to our user in the choot and start resolve
-#===============================================================================
-
-
-#===============================================================================
-# script usage
-#===============================================================================
-
-usage () {
-# if argument passed to function echo it
-[ -z "${1}" ] || echo "! ${1}"
-# display help
-echo "\
-# script usage
-$(basename "$0") -u ${USER}"
-exit 2
-}
-
-#===============================================================================
-# check the number of arguments passed to the script
-#===============================================================================
-
-[ $# -gt 0 ] || usage "${WRONG_ARGS_ERR}"
-
-
-#===============================================================================
-# getopts check the options passed to the script
-#===============================================================================
-
-while getopts ':u:h' opt
-do
-  case ${opt} in
-     u) username="${OPTARG}";;
-     h) usage;;
-     \?) usage "${INVALID_OPT_ERR} ${OPTARG}" 1>&2;;
-     :) usage "${INVALID_OPT_ERR} ${OPTARG} ${REQ_ARG_ERR}" 1>&2;;
-  esac
-done
-shift $((OPTIND-1))
-
-
-#===============================================================================
-# switch to our user in the choot and start resolve
-#===============================================================================
-
-# change username below to the name of the user in the chroot
-su "${username}" -c '/opt/resolve/bin/resolve' 2>/dev/null
-#+end_src
-
-***** wrapper-resolve tangle
-
-+ root dir
-
-#+NAME: wrapper-resolve-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/compat/ubuntu/usr/local/bin/wrapper-resolve"
-<<wrapper-resolve>>
-#+END_SRC
-  
-+ current dir
-  
-#+NAME: wrapper-resolve-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "compat/ubuntu/usr/local/bin/wrapper-resolve"
-<<wrapper-resolve>>
-#+END_SRC
-
 ** /etc
 *** devfs.rules
 
@@ -546,6 +98,17 @@ su "${username}" -c '/opt/resolve/bin/resolve' 2>/dev/null
 #+BEGIN_SRC conf
 [localrules=5]
 add path 'da*' mode 0660 group operator
+
+[ubuntu_jail=7]
+add include $devfsrules_hide_all
+add include $devfsrules_unhide_basic
+add include $devfsrules_unhide_login
+add path 'mixer*' unhide
+add path 'dsp*' unhide
+add path 'dri*' unhide
+add path 'drm*' unhide
+add path 'nvidia*' unhide
+add path 'speaker*' unhide
 #+END_SRC
 
 **** devfs.rules tangle
@@ -615,12 +178,15 @@ add_new_resolv_conf() {
 /dev/gpt/efiboot0		/boot/efi	msdosfs	rw		2	2
 /dev/nda0p3.eli		none	swap	sw		0	0
 # linux
-proc                            /proc           procfs  rw      0       0
-#linprocfs                       /compat/linux/proc	linprocfs	rw	0	0
-#linsysfs                        /compat/linux/sys	linsysfs	rw	0	0
+proc            /proc                   procfs          rw      0       0
+#linprocfs       /compat/linux/proc	linprocfs	rw	0	0
+#linsysfs        /compat/linux/sys	linsysfs	rw	0	0
 
 # mount video from host to chroot
-/home/djwilcox/video           /compat/ubuntu/home/djwilcox/video     nullfs          rw,noauto                      0       0
+#/home/djwilcox/video           /compat/ubuntu/home/djwilcox/video     nullfs          rw,noauto                      0       0
+
+# mount video from host to the ubuntu jail
+/home/djwilcox/video  /usr/local/jails/linux/ubuntu/home/djwilcox/video     nullfs          rw,noauto                      0       0
 #+END_SRC
 
 **** fstab tangle
@@ -697,6 +263,7 @@ mount.devfs;
 #=========================================================================#
 
 int_if="ue0" # usb to ethernet adaptor
+#int_if="bge0" # thunderbolt to ethernet adaptor
 #int_if="wlan0" # ralink usb wifi
 vpn_if="tun0" # vpn interface
 all_networks="0.0.0.0/0"
@@ -849,6 +416,8 @@ jail_enable="YES"
 # cloned loopback interface for jail
 cloned_interfaces="lo1"
 ifconfig_lo1_aliases="inet 10.10.0.1-12/24"
+jail_parallel_start="YES"
+jail_list="ubuntu"
 #+END_SRC
 
 **** rc.conf tangle
@@ -924,12 +493,14 @@ options edns0
 
 # Uncomment this to prevent users from seeing information about processes that
 # are being run under another UID.
-#security.bsd.see_other_uids=0
+security.bsd.see_other_uids=0
 security.bsd.see_other_uids=0
 security.bsd.see_other_gids=0
 security.bsd.see_jail_proc=0
 security.bsd.unprivileged_read_msgbuf=0
 security.bsd.unprivileged_proc_debug=0
+# chroot
+security.bsd.unprivileged_chroot=1
 kern.randompid=1
 vfs.zfs.min_auto_ashift=12
 # disable bell
@@ -1970,6 +1541,10 @@ permit nopass :djwilcox cmd sysctl
 
 # chroot
 permit nopass :djwilcox cmd chroot
+
+# jail
+permit nopass :djwilcox cmd jexec
+permit nopass :djwilcox cmd service
 
 # root as root
 permit nopass keepenv root as root
