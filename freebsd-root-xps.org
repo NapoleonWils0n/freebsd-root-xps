@@ -751,7 +751,7 @@ kld_list="nvidia-modeset nvidia-drm linux linux64 i915kms ext2fs mac_priority fu
 # wayland
 seatd_enable="YES"
 # dbus
-#dbus_enable="YES"
+dbus_enable="YES"
 # linux
 linux_enable="YES"
 ubuntu_enable="NO"
