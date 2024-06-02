@@ -63,7 +63,7 @@ sysctlbyname_improved_load="YES"
 usbhid_load="YES"
 # setfibs
 net.fibs=2
-net.add_addr_allfibs=0
+#net.add_addr_allfibs=0
 #+END_SRC
 
 **** loader.conf tangle
@@ -890,6 +890,8 @@ hw.acpi.video.lcd0.fullpower=100
 hw.acpi.video.lcd0.brightness=100
 # usb keyboard media keys
 hw.usb.usbhid.enable=1
+# fib
+net.add_addr_allfibs=0
 #+END_SRC
 
 **** sysctl.conf tangle
