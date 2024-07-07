@@ -760,7 +760,6 @@ ubuntu_enable="NO"
 virtual_oss_enable="NO"
 # sndiod audio
 sndiod_enable="YES"
-sndiod_flags="-r 44100"
 # jack
 jackd_enable="NO"
 jackd_user="djwilcox"
