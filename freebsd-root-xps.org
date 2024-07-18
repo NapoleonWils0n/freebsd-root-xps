@@ -40,7 +40,7 @@ kern.geom.label.gptid.enable="0"
 cryptodev_load="YES"
 zfs_load="YES"
 # nvidia modeset
-hw.nvidiadrm.modeset="1"
+#hw.nvidiadrm.modeset="1"
 # nullfs tmpfs for poudriere
 nullfs_load="YES"
 tmpfs_load="YES"
@@ -736,7 +736,7 @@ hostname="pollux"
 ifconfig_ue0="DHCP"
 local_unbound_enable="YES"
 sshd_enable="NO"
-moused_enable="YES"
+moused_enable="NO"
 # Set dumpdev to "AUTO" to enable crash dumps, "NO" to disable
 dumpdev="AUTO"
 # pf firewall
