@@ -758,7 +758,7 @@ dbus_enable="YES"
 # linux
 linux_enable="YES"
 ubuntu_enable="NO"
-# virtual oss - start with: sudo sysrc onestart virtual_oss 
+# virtual oss
 virtual_oss_enable="YES"
 virtual_oss_configs="dsp"
 virtual_oss_dsp="-T /dev/sndstat -S -Q 0 -C 2 -c 2 -r 48000 -b 16 -s 1024 -P /dev/dsp1 -R /dev/null -w vdsp.wav -l dsp -t vdsp.ctl"
