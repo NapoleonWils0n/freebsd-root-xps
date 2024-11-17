@@ -626,6 +626,7 @@ russian|Russian Users Accounts:\
 # variables, macro and tables                                             #
 #=========================================================================#
 
+int_if="lagg0" # lagg0 failover
 int_if="ue0" # usb to ethernet adaptor
 #int_if="bge0" # thunderbolt to ethernet adaptor
 #int_if="wlan0" # ralink usb wifi
@@ -772,16 +773,24 @@ jackd_rtprio="YES"
 musicpd_enable="YES"
 # devfs rules for user mounting drives
 devfs_system_ruleset="localrules"
+
+# laggo failover device
+# ethernet mac address set to wifi mac address
+ifconfig_ue0="ether 78:2b:46:ee:27:a3"
+wlans_iwlwifi0="wlan0"
+ifconfig_wlan0="WPA"
+create_args_wlan0="country GB"
+cloned_interfaces="lagg0 lo1"
+ifconfig_lagg0="up laggproto failover laggport ue0 laggport wlan0 DHCP"
+
 # ralink wifi
-wlans_run0="wlan0"
-ifconfig_wlan0="WPA SYNDHCP"
+#wlans_run0="wlan0"
+#ifconfig_wlan0="WPA SYNDHCP"
 #dnscrypt_proxy_enable="YES"
 #dnscrypt_proxy_pidfile="/var/run/dnscrypt-proxy.pid"
 #dnscrypt_proxy_logfile="/var/log/dnscrypt-proxy.log"
 # jail enable
 jail_enable="YES"
-# cloned loopback interface for jail
-cloned_interfaces="lo1"
 ifconfig_lo1_aliases="inet 10.10.0.1-12/24"
 #jail_parallel_start="YES"
 #jail_list="classic"
