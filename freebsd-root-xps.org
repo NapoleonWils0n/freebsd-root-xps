@@ -627,7 +627,7 @@ russian|Russian Users Accounts:\
 #=========================================================================#
 
 int_if="lagg0" # lagg0 failover
-int_if="ue0" # usb to ethernet adaptor
+#int_if="ue0" # usb to ethernet adaptor
 #int_if="bge0" # thunderbolt to ethernet adaptor
 #int_if="wlan0" # ralink usb wifi
 vpn_if="tun0" # vpn interface
