@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# PROVIDE: laggpf
+# REQUIRE: devd pf routing
+# KEYWORD: nojail
+
+. /etc/rc.subr
+
+name=laggpf
+desc="Wait for network devices or the network being up"
+rcvar=laggpf_enable 
+
+start_cmd="${name}_start"
+stop_cmd=":"
+
+load_rc_config $name 
+: ${laggpf_enable:=no} 
+: ${laggpf_msg="Nothing started."} 
+
+laggpf_start()
+{
+    service netif restart lagg0
+    service pf restart
+}
+
+run_rc_command "$1"
