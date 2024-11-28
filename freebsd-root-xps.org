@@ -1183,7 +1183,7 @@ run_rc_command "$1"
 + root dir
 
 #+NAME: laggpf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/rc.d/laggpf"
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/rc.d/laggpf" :tangle-mode (identity #o755)
 <<laggpf>>
 #+END_SRC
   
@@ -1250,7 +1250,7 @@ run_rc_command $1
 + root dir
 
 #+NAME: musicpd-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/rc.d/musicpd"
+#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/rc.d/musicpd" :tangle-mode (identity #o755)
 <<musicpd>>
 #+END_SRC
   
