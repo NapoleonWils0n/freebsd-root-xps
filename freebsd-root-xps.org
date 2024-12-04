@@ -750,7 +750,7 @@ powerd_flags="-a hiadaptive -b adaptive"
 performance_cx_lowest="Cmax"
 economy_cx_lowest="Cmax"
 # kld list 
-kld_list="nvidia-modeset nvidia-drm linux linux64 i915kms ext2fs mac_priority fusefs"
+kld_list="nvidia-modeset nvidia-drm linux linux64 i915kms ext2fs mac_priority fusefs vmm"
 # wayland
 seatd_enable="YES"
 # dbus
@@ -780,6 +780,8 @@ wlans_iwlwifi0="wlan0"
 ifconfig_wlan0="WPA"
 create_args_wlan0="country GB"
 cloned_interfaces="lagg0 lo1"
+#cloned_interfaces="lagg0 lo1 bridge0 tap0"
+#ifconfig_bridge0="up addm lagg0 addm tap0"
 ifconfig_lagg0="up laggproto failover laggport ue0 laggport wlan0 DHCP"
 
 # laggpf netif restart lagg0, and restart pf
@@ -801,6 +803,10 @@ ifconfig_lo1_aliases="inet 10.10.0.1-12/24"
 syncthing_enable="NO"
 syncthing_user="djwilcox"
 syncthing_group="djwilcox"
+
+# bhyve
+vm_enable="YES"
+vm_dir="zfs:zroot/vm"
 #+END_SRC
 
 **** rc.conf tangle
@@ -912,6 +918,8 @@ hw.acpi.video.lcd0.brightness=100
 hw.usb.usbhid.enable=1
 # fib
 net.add_addr_allfibs=0
+# bhyve tap
+net.link.tap.up_on_open=1
 #+END_SRC
 
 **** sysctl.conf tangle
