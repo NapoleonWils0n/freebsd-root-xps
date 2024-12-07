@@ -637,7 +637,7 @@ vpn_network="$vpn_if:network"
 # 6881, 6882 = transmission. , 22000, 21025 = syncthing
 tcp_services = "{ ntp, 6881, 22000 }" # tcp services - torrent
 udp_services = "{ ntp, 6882, 21025 }" # udp services - torrent
-nfs_services = "{ 2049 }" # 2049 = nfs
+#nfs_services = "{ 2049 }" # 2049 = nfs
 icmp_types = "{ echoreq, unreach }"
 tcp_state="flags S/SA keep state"
 udp_state="keep state"
@@ -697,7 +697,7 @@ pass in on $int_if inet proto tcp from any to ($int_if) port $tcp_services $tcp_
 pass in on $int_if inet proto udp from any to ($int_if) port $udp_services $udp_state tag UDP_IN
 
 # nfs
-pass in on $int_if inet proto tcp from <lan> to any port $nfs_services keep state
+#pass in on $int_if inet proto tcp from <lan> to any port $nfs_services keep state
 
 # outbound traffic
 block out on $int_if all
@@ -755,7 +755,7 @@ powerd_flags="-a hiadaptive -b adaptive"
 performance_cx_lowest="Cmax"
 economy_cx_lowest="Cmax"
 # kld list 
-kld_list="nvidia-modeset nvidia-drm linux linux64 i915kms ext2fs mac_priority fusefs vmm"
+kld_list="nvidia-modeset nvidia-drm linux linux64 i915kms ext2fs mac_priority fusefs"
 # wayland
 seatd_enable="YES"
 # dbus
@@ -808,10 +808,6 @@ ifconfig_lo1_aliases="inet 10.10.0.1-12/24"
 syncthing_enable="NO"
 syncthing_user="djwilcox"
 syncthing_group="djwilcox"
-
-# bhyve
-vm_enable="YES"
-vm_dir="zfs:zroot/vm"
 #+END_SRC
 
 **** rc.conf tangle
@@ -923,8 +919,6 @@ hw.acpi.video.lcd0.brightness=100
 hw.usb.usbhid.enable=1
 # fib
 net.add_addr_allfibs=0
-# bhyve tap
-net.link.tap.up_on_open=1
 #+END_SRC
 
 **** sysctl.conf tangle
