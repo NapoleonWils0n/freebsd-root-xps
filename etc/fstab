@@ -3,11 +3,5 @@
 /dev/nda0p3.eli		none	swap	sw		0	0
 # linux
 proc            /proc                   procfs          rw      0       0
-#linprocfs       /compat/linux/proc	linprocfs	rw	0	0
-#linsysfs        /compat/linux/sys	linsysfs	rw	0	0
-
-# mount video from host to chroot
-#/home/djwilcox/video           /compat/ubuntu/home/djwilcox/video     nullfs          rw,noauto                      0       0
-
-# mount video from host to the ubuntu jail
-/home/djwilcox/video  /usr/local/jails/linux/ubuntu/home/djwilcox/video     nullfs          rw,noauto                      0       0
+# podman
+fdesc   /dev/fd         fdescfs         rw      0       0
