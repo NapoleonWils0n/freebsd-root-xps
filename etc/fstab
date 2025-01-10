@@ -3,5 +3,3 @@
 /dev/nda0p3.eli		none	swap	sw		0	0
 # linux
 proc            /proc                   procfs          rw      0       0
-# podman
-fdesc   /dev/fd         fdescfs         rw      0       0
