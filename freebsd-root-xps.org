@@ -803,6 +803,8 @@ syncthing_group="djwilcox"
 # byhve
 vm_enable="YES"
 vm_dir="zfs:zroot/vm"
+# gateway enable for bhyve
+gateway_enable="YES"
 #+END_SRC
 
 **** rc.conf tangle
@@ -916,6 +918,7 @@ hw.usb.usbhid.enable=1
 net.add_addr_allfibs=0
 # byhve
 net.link.tap.up_on_open=1
+net.inet.ip.forwarding=1
 #+END_SRC
 
 **** sysctl.conf tangle
