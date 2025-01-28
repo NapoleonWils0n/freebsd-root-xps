@@ -747,7 +747,7 @@ powerd_flags="-a hiadaptive -b adaptive"
 performance_cx_lowest="Cmax"
 economy_cx_lowest="Cmax"
 # kld list 
-kld_list="nvidia-modeset nvidia-drm linux linux64 i915kms ext2fs mac_priority fusefs"
+kld_list="nvidia-modeset nvidia-drm linux linux64 i915kms ext2fs mac_priority fusefs vmm"
 # wayland
 seatd_enable="YES"
 # dbus
@@ -800,6 +800,9 @@ ifconfig_lo1_aliases="inet 10.10.0.1-12/24"
 syncthing_enable="NO"
 syncthing_user="djwilcox"
 syncthing_group="djwilcox"
+# byhve
+vm_enable="YES"
+vm_dir="zfs:zroot/vm"
 #+END_SRC
 
 **** rc.conf tangle
@@ -911,6 +914,8 @@ hw.acpi.video.lcd0.brightness=100
 hw.usb.usbhid.enable=1
 # fib
 net.add_addr_allfibs=0
+# byhve
+net.link.tap.up_on_open=1
 #+END_SRC
 
 **** sysctl.conf tangle
