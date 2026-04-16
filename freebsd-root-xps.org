@@ -32,6 +32,15 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/freebsd/freebsd-root/
 
 #+NAME: loader.conf
 #+BEGIN_SRC conf
+#===============================================================================
+# loader.conf
+#===============================================================================
+
+
+#===============================================================================
+# general settings
+#===============================================================================
+
 aesni_load="YES"
 geom_eli_load="YES"
 security.bsd.allow_destructive_dtrace=0
@@ -39,33 +48,80 @@ kern.geom.label.disk_ident.enable="0"
 kern.geom.label.gptid.enable="0"
 cryptodev_load="YES"
 zfs_load="YES"
-# nvidia modeset
-#hw.nvidiadrm.modeset="1"
+
+
+#===============================================================================
 # nullfs tmpfs for poudriere
+#===============================================================================
+
 nullfs_load="YES"
 tmpfs_load="YES"
+
+
+#===============================================================================
 # audio
+#===============================================================================
+
 snd_hda_load="YES"
 snd_uaudio_load="YES"
+
+
+#===============================================================================
 # coretemp
+#===============================================================================
+
 acpi_video_load="YES"
 coretemp_load="YES"
+
+
+#===============================================================================
 # touchpad
+#===============================================================================
+
 wsp_load="YES"
+
+
+#===============================================================================
 # async i/o
+#===============================================================================
+
 aio_load="YES"
+
+
+#===============================================================================
 # cuse audio for virtual_oss
+#===============================================================================
+
 cuse_load="YES"
+
+
+#===============================================================================
 # virtual oss - start with: sudo sysrc onestart virtual_oss 
+#===============================================================================
+
 virtual_oss_enable="NO"
+
+
+#===============================================================================
 # mixertui
+#===============================================================================
+
 sysctlinfo_load="YES"
 sysctlbyname_improved_load="YES"
+
+
+#===============================================================================
 # usb keyboard multimedia keys
+#===============================================================================
+
 usbhid_load="YES"
+
+
+#===============================================================================
 # setfibs
+#===============================================================================
+
 net.fibs=2
-#net.add_addr_allfibs=0
 #+END_SRC
 
 **** loader.conf tangle
@@ -76,7 +132,7 @@ net.fibs=2
 + root dir
 
 #+NAME: loader.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/boot/loader.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/boot/loader.conf"
 <<loader.conf>>
 #+END_SRC
   
@@ -121,7 +177,7 @@ add path 'speaker*' unhide
 + root dir
 
 #+NAME: devfs.rules-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/devfs.rules"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/devfs.rules"
 <<devfs.rules>>
 #+END_SRC
   
@@ -155,7 +211,7 @@ add_new_resolv_conf() {
 + root dir
 
 #+NAME: dhclient-enter-hooks-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/dhclient-enter-hooks"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/dhclient-enter-hooks"
 <<dhclient-enter-hooks>>
 #+END_SRC
   
@@ -176,10 +232,22 @@ add_new_resolv_conf() {
 
 #+NAME: fstab
 #+BEGIN_SRC conf
+#===============================================================================
+# fstab
+#===============================================================================
+
+#===============================================================================
 # Device		Mountpoint	FStype	Options		Dump	Pass#
+#===============================================================================
+
 /dev/gpt/efiboot0		/boot/efi	msdosfs	rw		2	2
 /dev/nda0p3.eli		none	swap	sw		0	0
+
+
+#===============================================================================
 # linux
+#===============================================================================
+
 proc            /proc                   procfs          rw      0       0
 #+END_SRC
 
@@ -191,7 +259,7 @@ proc            /proc                   procfs          rw      0       0
 + root dir
 
 #+NAME: fstab-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/fstab"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/fstab"
 <<fstab>>
 #+END_SRC
   
@@ -212,12 +280,24 @@ proc            /proc                   procfs          rw      0       0
 
 #+NAME: jail
 #+BEGIN_SRC conf
+#===============================================================================
+# jail.conf
+#===============================================================================
+
+
+#===============================================================================
 # startup/logging
+#===============================================================================
+
 exec.start = "/bin/sh /etc/rc";
 exec.stop = "/bin/sh /etc/rc.shutdown";
 exec.consolelog = "/var/log/jail_console_${name}.log";
 
+
+#===============================================================================
 # permissions
+#===============================================================================
+
 allow.raw_sockets;
 exec.clean;
 mount.devfs;
@@ -231,7 +311,7 @@ mount.devfs;
 + root dir
 
 #+NAME: jail-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/jail.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/jail.conf"
 <<jail>>
 #+END_SRC
   
@@ -593,7 +673,7 @@ russian|Russian Users Accounts:\
 + root dir
 
 #+NAME: login-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/login.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/login.conf"
 <<login>>
 #+END_SRC
   
@@ -614,6 +694,10 @@ russian|Russian Users Accounts:\
 
 #+NAME: pf.conf
 #+BEGIN_SRC conf
+#=========================================================================#
+# pf.conf
+#=========================================================================#
+
 #=========================================================================#
 # variables, macro and tables                                             #
 #=========================================================================#
@@ -706,7 +790,7 @@ pass out quick on $int_if all modulate state
 + root dir
 
 #+NAME: pf.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/pf.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/pf.conf"
 <<pf.conf>>
 #+END_SRC
   
@@ -727,6 +811,15 @@ pass out quick on $int_if all modulate state
 
 #+NAME: rc.conf
 #+BEGIN_SRC conf
+#=========================================================================#
+# rc.conf
+#=========================================================================#
+
+
+#=========================================================================#
+# general settings
+#=========================================================================#
+
 zfs_enable="YES"
 clear_tmp_enable="YES"
 syslogd_flags="-ss"
@@ -734,76 +827,183 @@ hostname="pollux"
 local_unbound_enable="YES"
 sshd_enable="NO"
 moused_enable="NO"
+
+
+#=========================================================================#
 # Set dumpdev to "AUTO" to enable crash dumps, "NO" to disable
+#=========================================================================#
+
 dumpdev="AUTO"
+
+
+#=========================================================================#
 # pf firewall
+#=========================================================================#
+
 pf_enable="YES"
+
+
+#=========================================================================#
 # time and date
+#=========================================================================#
+
 ntpd_enable="YES"
 ntpd_sync_on_start="YES"
+
+
+#=========================================================================#
 # power settings
+#=========================================================================#
+
 powerd_enable="YES"
 powerd_flags="-a hiadaptive -b adaptive"
 performance_cx_lowest="Cmax"
 economy_cx_lowest="Cmax"
+
+
+#=========================================================================#
 # kld list 
+#=========================================================================#
+
 kld_list="nvidia-modeset nvidia-drm linux linux64 i915kms ext2fs mac_priority fusefs vmm nmdm"
+
+
+#=========================================================================#
 # wayland
+#=========================================================================#
 seatd_enable="YES"
+
+
+#=========================================================================#
 # dbus
+#=========================================================================#
+
 dbus_enable="YES"
+
+
+#=========================================================================#
 # linux
+#=========================================================================#
+
 linux_enable="YES"
 ubuntu_enable="NO"
+
+
+#=========================================================================#
 # virtual oss
+#=========================================================================#
+
 virtual_oss_enable="YES"
 virtual_oss_configs="dsp"
 virtual_oss_dsp="-T /dev/sndstat -S -Q 0 -C 2 -c 2 -r 48000 -b 16 -s 1024 -P /dev/dsp1 -R /dev/null -w vdsp.wav -l dsp -t vdsp.ctl"
+
+
+#=========================================================================#
 # sndiod audio
+#=========================================================================#
+
 sndiod_enable="YES"
+
+
+#=========================================================================#
 # jack
+#=========================================================================#
+
 jackd_enable="NO"
 jackd_user="djwilcox"
 jackd_rtprio="YES"
+
+
+#=========================================================================#
 # musicpd
+#=========================================================================#
+
 musicpd_enable="YES"
+
+
+#=========================================================================#
 # devfs rules for user mounting drives
+#=========================================================================#
+
 devfs_system_ruleset="localrules"
 
+
+#=========================================================================#
 # laggo failover device
 # ethernet mac address set to wifi mac address
+#=========================================================================#
+
 ifconfig_ue0="ether 78:2b:46:ee:27:a3"
 wlans_iwlwifi0="wlan0"
 ifconfig_wlan0="WPA"
 create_args_wlan0="country GB"
 cloned_interfaces="lagg0 lo1"
+
+
+#=========================================================================#
 #cloned_interfaces="lagg0 lo1 bridge0 tap0"
 #ifconfig_bridge0="up addm lagg0 addm tap0"
+#=========================================================================#
+
 ifconfig_lagg0="up laggproto failover laggport ue0 laggport wlan0 DHCP"
 
+
+#=========================================================================#
 # laggpf netif restart lagg0, and restart pf
 # needed for usb exthernet and wifi
+#=========================================================================#
+
 laggpf_enable="YES"
 
+
+#=========================================================================#
 # ralink wifi
+#=========================================================================#
+
 #wlans_run0="wlan0"
 #ifconfig_wlan0="WPA SYNDHCP"
+
+
+#=========================================================================#
+# dnscrypt_proxy
+#=========================================================================#
+
 #dnscrypt_proxy_enable="YES"
 #dnscrypt_proxy_pidfile="/var/run/dnscrypt-proxy.pid"
 #dnscrypt_proxy_logfile="/var/log/dnscrypt-proxy.log"
+
+
+#=========================================================================#
 # jail enable
+#=========================================================================#
+
 jail_enable="YES"
 ifconfig_lo1_aliases="inet 10.10.0.1-12/24"
 #jail_parallel_start="YES"
 #jail_list="classic"
+
+
+#=========================================================================#
 # syncthing
+#=========================================================================#
+
 syncthing_enable="NO"
 syncthing_user="djwilcox"
 syncthing_group="djwilcox"
+
+
+#=========================================================================#
 # byhve
+#=========================================================================#
+
 vm_enable="YES"
 vm_dir="zfs:zroot/vm"
+
+
+#=========================================================================#
 # gateway enable for bhyve
+#=========================================================================#
+
 gateway_enable="YES"
 #+END_SRC
 
@@ -815,7 +1015,7 @@ gateway_enable="YES"
 + root dir
 
 #+NAME: rc.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/rc.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/rc.conf"
 <<rc.conf>>
 #+END_SRC
   
@@ -836,7 +1036,15 @@ gateway_enable="YES"
 
 #+NAME: resolv.conf
 #+BEGIN_SRC conf
+#=========================================================================#
+# resolv.conf
+#=========================================================================#
+
+
+#=========================================================================#
 # Generated by resolvconf
+#=========================================================================#
+
 search localdomain
 # nameserver 192.168.1.1
 
@@ -852,7 +1060,7 @@ options edns0
 + root dir
 
 #+NAME: resolv.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/resolv.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/resolv.conf"
 <<resolv.conf>>
 #+END_SRC
   
@@ -873,50 +1081,123 @@ options edns0
 
 #+NAME: sysctl.conf
 #+BEGIN_SRC conf
+#=========================================================================#
+# sysctl.conf
+#=========================================================================#
 #
 #  This file is read when going to multi-user and its contents piped thru
 #  ``sysctl'' to adjust kernel values.  ``man 5 sysctl.conf'' for details.
 #
+#=========================================================================#
 
+
+#=========================================================================#
 # Uncomment this to prevent users from seeing information about processes that
 # are being run under another UID.
+#=========================================================================#
+
 security.bsd.see_other_uids=0
 security.bsd.see_other_uids=0
 security.bsd.see_other_gids=0
 security.bsd.see_jail_proc=0
 security.bsd.unprivileged_read_msgbuf=0
 security.bsd.unprivileged_proc_debug=0
+
+
+#=========================================================================#
 # chroot
+#=========================================================================#
+
 security.bsd.unprivileged_chroot=1
 kern.randompid=1
 vfs.zfs.min_auto_ashift=12
+
+
+#=========================================================================#
 # disable bell
+#=========================================================================#
+
 hw.syscons.bell=0
+
+
+#=========================================================================#
 # user mount drives
+#=========================================================================#
+
 vfs.usermount=1
+
+
+#=========================================================================#
 # default audio output - headphones
+#=========================================================================#
+
 hw.snd.default_unit=1
+
+
+#=========================================================================#
 # use new audio devices automatically
+#=========================================================================#
+
 hw.snd.default_auto=1
+
+
+#=========================================================================#
 # dont autoreset vol to default
+#=========================================================================#
+
 hw.snd.vpc_autoreset=0
+
+
+#=========================================================================#
 # audio tweaks
+#=========================================================================#
+
 hw.snd.latency=0
 kern.timecounter.alloweddeviation=0
 hw.usb.uaudio.buffer_ms=2
+
+
+#=========================================================================#
 # chromium
+#=========================================================================#
+
 kern.ipc.shm_allow_removed=1
+
+
+#=========================================================================#
 # change reponsiveness from server to desktop
+#=========================================================================#
+
 kern.sched.preempt_thresh=224
+
+
+#=========================================================================#
 # screen brightness
+#=========================================================================#
+
 hw.acpi.video.lcd0.economy=50
 hw.acpi.video.lcd0.fullpower=100
 hw.acpi.video.lcd0.brightness=100
+
+
+#=========================================================================#
 # usb keyboard media keys
+#=========================================================================#
+
 hw.usb.usbhid.enable=1
+
+
+#=========================================================================#
 # fib
+#=========================================================================#
+
 net.add_addr_allfibs=0
+
+
+#=========================================================================#
 # byhve
+#=========================================================================#
+
 net.link.tap.up_on_open=1
 net.inet.ip.forwarding=1
 #+END_SRC
@@ -929,7 +1210,7 @@ net.inet.ip.forwarding=1
 + root dir
 
 #+NAME: sysctl.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/sysctl.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/sysctl.conf"
 <<sysctl.conf>>
 #+END_SRC
   
@@ -1012,7 +1293,7 @@ rcons	"/usr/libexec/getty std.115200"	vt100	onifconsole insecure
 + root dir
 
 #+NAME: ttys-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/ttys"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/ttys"
 <<ttys>>
 #+END_SRC
   
@@ -1035,6 +1316,10 @@ rcons	"/usr/libexec/getty std.115200"	vt100	onifconsole insecure
 
 #+NAME: custom.conf
 #+BEGIN_SRC conf
+#=========================================================================#
+# unbound custom.conf
+#=========================================================================#
+
 server:
 # include: "/etc/unbound/unbound_outgoing_interface"
 	verbosity: 1
@@ -1064,7 +1349,7 @@ server:
 + root dir
 
 #+NAME: custom.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/unbound/conf.d/custom.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/unbound/conf.d/custom.conf"
 <<custom.conf>>
 #+END_SRC
   
@@ -1085,7 +1370,13 @@ server:
 
 #+NAME: forward.conf
 #+BEGIN_SRC conf
+#=========================================================================#
+# unbound forward.conf
+#=========================================================================#
+
+#=========================================================================#
 # Generated by resolvconf
+#=========================================================================#
 
 forward-zone:
 	name: "."
@@ -1100,7 +1391,7 @@ forward-zone:
 + root dir
 
 #+NAME: forward.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/unbound/forward.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/unbound/forward.conf"
 <<forward.conf>>
 #+END_SRC
   
@@ -1131,7 +1422,7 @@ forward-zone:
 + root dir
 
 #+NAME: unbound_outgoing_interface-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/etc/unbound/unbound_outgoing_interface"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/unbound/unbound_outgoing_interface"
 <<unbound_outgoing_interface>>
 #+END_SRC
   
@@ -1190,7 +1481,7 @@ run_rc_command "$1"
 + root dir
 
 #+NAME: laggpf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/rc.d/laggpf" :tangle-mode (identity #o755)
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/rc.d/laggpf" :tangle-mode (identity #o755)
 <<laggpf>>
 #+END_SRC
   
@@ -1257,7 +1548,7 @@ run_rc_command $1
 + root dir
 
 #+NAME: musicpd-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/rc.d/musicpd" :tangle-mode (identity #o755)
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/rc.d/musicpd" :tangle-mode (identity #o755)
 <<musicpd>>
 #+END_SRC
   
@@ -1278,7 +1569,14 @@ run_rc_command $1
 
 #+NAME: usbhidaction.conf
 #+BEGIN_SRC conf
+#=========================================================================#
+# usbhidaction.conf
+#=========================================================================#
+
+#=========================================================================#
 # ducky one 2 mini
+#=========================================================================#
+
 Consumer:Volume_Increment	1 0 mixer vol +2
 Consumer:Volume_Decrement	1 0 mixer vol -2
 Consumer:Mute			1 0 mixer vol 0
@@ -1292,7 +1590,7 @@ Consumer:Mute			1 0 mixer vol 0
 + root dir
 
 #+NAME: usbhidaction.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/usbhidaction.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/usbhidaction.conf"
 <<usbhidaction.conf>>
 #+END_SRC
   
@@ -1314,7 +1612,14 @@ Consumer:Mute			1 0 mixer vol 0
 
 #+NAME: devd.conf
 #+BEGIN_SRC conf
+#=========================================================================#
+# devd.conf
+#=========================================================================#
+
+#=========================================================================#
 # ducky one 2 mini
+#=========================================================================#
+
 attach 100 {
         device-name "uhid[0-9]+";                                                           
         match "vendor"  "0x0416"; # (1)
@@ -1339,7 +1644,7 @@ attach 100 {
 + root dir
 
 #+NAME: devd.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/devd/devd.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/devd/devd.conf"
 <<devd.conf>>
 #+END_SRC
   
@@ -1894,7 +2199,7 @@ cache_neg_max_ttl = 600
 + root dir
 
 #+NAME: dnscrypt-proxy.toml-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
 <<dnscrypt-proxy.toml>>
 #+END_SRC
   
@@ -1918,7 +2223,7 @@ cache_neg_max_ttl = 600
 #+NAME: pkg/repos/poudriere.conf
 #+BEGIN_SRC conf
 Poudriere: {
-    url: "file:///usr/local/poudriere/data/packages/freebsd_14-0x64-HEAD"
+    url: "file:///usr/local/poudriere/data/packages/freebsd_15-0x64-HEAD"
     mirror_type: "srv",
     signature_type: "pubkey",
     pubkey: "/usr/local/etc/ssl/certs/poudriere.cert",
@@ -1935,7 +2240,7 @@ Poudriere: {
 + root dir
 
 #+NAME: pkg/repos/poudriere.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/pkg/repos/poudriere.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/pkg/repos/poudriere.conf"
 <<pkg/repos/poudriere.conf>>
 #+END_SRC
   
@@ -1956,65 +2261,141 @@ Poudriere: {
 
 #+NAME: doas
 #+BEGIN_SRC conf
+#=========================================================================#
+# doas.conf
+#=========================================================================#
+
+
+#=========================================================================#
 # permit user
+#=========================================================================#
+
 permit keepenv :djwilcox
 
+
+#=========================================================================#
 # mount drives
+#=========================================================================#
+
 permit nopass :djwilcox cmd mount
 permit nopass :djwilcox cmd umount
 
+
+#=========================================================================#
 # restart networking
+#=========================================================================#
+
 permit nopass :djwilcox cmd service args netif start
 permit nopass :djwilcox cmd service args netif stop
 permit nopass :djwilcox cmd service args netif restart
 
+
+#=========================================================================#
 # ifconfig wlan0
+#=========================================================================#
+
 permit nopass :djwilcox cmd ifconfig args wlan0 up
 permit nopass :djwilcox cmd ifconfig args wlan0 down
 
+
+#=========================================================================#
 # ifconfig ue0 - usb ethenet
+#=========================================================================#
+
 permit nopass :djwilcox cmd ifconfig args ue0 up
 permit nopass :djwilcox cmd ifconfig args ue0 down
 
+
+#=========================================================================#
 # ifconfig scan and wpa_supplicant
+#=========================================================================#
+
 permit nopass :djwilcox cmd ifconfig args wlan0 list scan
 permit nopass :djwilcox cmd wpa_supplicant args -B -i wlan0 -c /etc/wpa_supplicant.conf 
 
+
+#=========================================================================#
 # pkg update
+#=========================================================================#
+
 permit nopass :djwilcox cmd pkg args update
 
+
+#=========================================================================#
 # pkg upgrade
+#=========================================================================#
+
 permit nopass :djwilcox cmd pkg args upgrade
 
+
+#=========================================================================#
 # dmesg
+#=========================================================================#
+
 permit nopass :djwilcox cmd dmesg
 
+
+#=========================================================================#
 # sysctl
+#=========================================================================#
+
 permit nopass :djwilcox cmd sysctl
 
+
+#=========================================================================#
 # chroot
+#=========================================================================#
+
 permit nopass :djwilcox cmd chroot
 
+
+#=========================================================================#
 # jail
+#=========================================================================#
+
 permit nopass :djwilcox cmd jexec
 permit nopass :djwilcox cmd service
 
+
+#=========================================================================#
 # sysrc
+#=========================================================================#
+
 permit nopass :djwilcox cmd sysrc
 
+
+#=========================================================================#
 # sysctl
+#=========================================================================#
+
 permit nopass :djwilcox cmd sysctl
 
+
+#=========================================================================#
 # ifconfig
+#=========================================================================#
+
 permit nopass :djwilcox cmd ifconfig
 
+
+#=========================================================================#
 # pfctl
+#=========================================================================#
+
 permit nopass :djwilcox cmd pfctl
 
+
+#=========================================================================#
 # vm-bhyve
+#=========================================================================#
+
 permit nopass :djwilcox cmd vm
 
+
+#=========================================================================#
 # root as root
+#=========================================================================#
+
 permit nopass keepenv root as root
 #+END_SRC
 
@@ -2026,7 +2407,7 @@ permit nopass keepenv root as root
 + root dir
 
 #+NAME: doas-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/doas.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/doas.conf"
 <<doas>>
 #+END_SRC
   
@@ -2394,7 +2775,7 @@ PKG_REPO_SIGNING_KEY=/usr/local/etc/ssl/keys/poudriere.key
 + root dir
 
 #+NAME: poudriere.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/poudriere.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/poudriere.conf"
 <<poudriere.conf>>
 #+END_SRC
   
@@ -2427,7 +2808,7 @@ DISABLE_LICENSES=yes
 + root dir
 
 #+NAME: make.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/poudriere.d/make.conf"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/poudriere.d/make.conf"
 <<make.conf>>
 #+END_SRC
   
@@ -2461,7 +2842,7 @@ emulators/libc6-shim
 + root dir
 
 #+NAME: port-list-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/sudo::/usr/local/etc/poudriere.d/port-list"
+#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/poudriere.d/port-list"
 <<port-list>>
 #+END_SRC
   
