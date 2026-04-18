@@ -1,7 +1,7 @@
 #+TITLE: freebsd root dotfiles xps
 #+STARTUP: overview hideblocks
 #+OPTIONS: num:nil author:nil
-#+PROPERTY: header-args :mkdirp yes
+#+PROPERTY: header-args :mkdirp yes :tangle-mode o644
 * tangle dotfiles
 ** tangle document
 
@@ -1444,7 +1444,7 @@ forward-zone:
 ***** laggpf config
 
 #+NAME: laggpf
-#+BEGIN_SRC sh
+#+BEGIN_SRC sh :tangle-mode (identity #o755)
 #!/bin/sh
 
 # PROVIDE: laggpf
@@ -1488,7 +1488,7 @@ run_rc_command "$1"
 + current dir
 
 #+NAME: laggpf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/rc.d/laggpf"
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/rc.d/laggpf" :tangle-mode (identity #o755)
 <<laggpf>>
 #+END_SRC
 
@@ -1501,7 +1501,7 @@ run_rc_command "$1"
 ***** musicpd config
 
 #+NAME: musicpd
-#+BEGIN_SRC sh
+#+BEGIN_SRC sh :tangle-mode (identity #o755)
 #!/bin/sh
 
 # PROVIDE: musicpd
@@ -1555,7 +1555,7 @@ run_rc_command $1
 + current dir
 
 #+NAME: musicpd-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/rc.d/musicpd"
+#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/rc.d/musicpd" :tangle-mode (identity #o755)
 <<musicpd>>
 #+END_SRC
 
