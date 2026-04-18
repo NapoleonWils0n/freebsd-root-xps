@@ -965,9 +965,9 @@ laggpf_enable="YES"
 # dnscrypt_proxy
 #=========================================================================#
 
-#dnscrypt_proxy_enable="YES"
-#dnscrypt_proxy_pidfile="/var/run/dnscrypt-proxy.pid"
-#dnscrypt_proxy_logfile="/var/log/dnscrypt-proxy.log"
+dnscrypt_proxy_enable="YES"
+dnscrypt_proxy_pidfile="/var/run/dnscrypt-proxy.pid"
+dnscrypt_proxy_logfile="/var/log/dnscrypt-proxy.log"
 
 
 #=========================================================================#
