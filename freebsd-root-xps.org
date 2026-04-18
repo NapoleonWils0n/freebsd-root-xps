@@ -1655,6 +1655,15 @@ attach 100 {
 #+END_SRC
 
 *** dnscrypt-proxy
+
+note use the new dnscrypt-proxy.toml.sample
+
+change permissions
+
+#+begin_src sh
+doas chown _dnscrypt-proxy:_dnscrypt-proxy /usr/local/etc/dnscrypt-proxy/dnscrypt-proxy.toml
+#+end_src
+
 **** dnscrypt-proxy.toml
 
 #+begin_example
