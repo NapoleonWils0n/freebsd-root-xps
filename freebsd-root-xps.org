@@ -43,7 +43,6 @@ emacs --batch -l org --eval '(org-babel-tangle-file "~/git/freebsd/freebsd-root/
 
 aesni_load="YES"
 geom_eli_load="YES"
-security.bsd.allow_destructive_dtrace=0
 kern.geom.label.disk_ident.enable="0"
 kern.geom.label.gptid.enable="0"
 cryptodev_load="YES"
