@@ -2229,7 +2229,8 @@ Poudriere: {
     signature_type: "pubkey",
     pubkey: "/usr/local/etc/ssl/certs/poudriere.cert",
     enabled: yes,
-    priority: 100
+    priority: 100,
+    IGNORE_OSVERSION: yes
 }
 #+END_SRC
 
