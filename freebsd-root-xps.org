@@ -2224,7 +2224,7 @@ cache_neg_max_ttl = 600
 #+NAME: pkg/repos/poudriere.conf
 #+BEGIN_SRC conf
 Poudriere: {
-    url: "file:///usr/local/poudriere/data/packages/freebsd_15-0x64-HEAD"
+    url: "file:///usr/local/poudriere/data/packages/freebsd_15-0x64-quarterly"
     mirror_type: "srv",
     signature_type: "pubkey",
     pubkey: "/usr/local/etc/ssl/certs/poudriere.cert",
@@ -2831,7 +2831,6 @@ DISABLE_LICENSES=yes
 #+NAME: port-list
 #+BEGIN_SRC conf
 www/linux-widevine-cdm
-emulators/libc6-shim
 
 #+END_SRC
 
