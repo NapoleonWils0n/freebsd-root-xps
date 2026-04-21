@@ -1,7 +1,7 @@
 #+TITLE: freebsd root dotfiles xps
 #+STARTUP: overview hideblocks
 #+OPTIONS: num:nil author:nil
-#+PROPERTY: header-args :mkdirp yes :tangle-mode o644
+#+PROPERTY: header-args :mkdirp yes :noweb yes :tangle-mode o644
 * tangle dotfiles
 ** tangle document
 
@@ -130,14 +130,14 @@ net.fibs=2
 + root dir
 
 #+NAME: loader.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/boot/loader.conf"
+#+BEGIN_SRC conf :tangle "/doas::/boot/loader.conf"
 <<loader.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: loader.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "boot/loader.conf"
+#+BEGIN_SRC conf :tangle "boot/loader.conf"
 <<loader.conf>>
 #+END_SRC
 
@@ -175,14 +175,14 @@ add path 'speaker*' unhide
 + root dir
 
 #+NAME: devfs.rules-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/devfs.rules"
+#+BEGIN_SRC conf :tangle "/doas::/etc/devfs.rules"
 <<devfs.rules>>
 #+END_SRC
   
 + current dir
 
 #+NAME: devfs.rules-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/devfs.rules"
+#+BEGIN_SRC conf :tangle "etc/devfs.rules"
 <<devfs.rules>>
 #+END_SRC
 
@@ -209,14 +209,14 @@ add_new_resolv_conf() {
 + root dir
 
 #+NAME: dhclient-enter-hooks-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/dhclient-enter-hooks"
+#+BEGIN_SRC conf :tangle "/doas::/etc/dhclient-enter-hooks"
 <<dhclient-enter-hooks>>
 #+END_SRC
   
 + current dir
 
 #+NAME: dhclient-enter-hooks-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/dhclient-enter-hooks"
+#+BEGIN_SRC conf :tangle "etc/dhclient-enter-hooks"
 <<dhclient-enter-hooks>>
 #+END_SRC
 
@@ -257,14 +257,14 @@ proc            /proc                   procfs          rw      0       0
 + root dir
 
 #+NAME: fstab-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/fstab"
+#+BEGIN_SRC conf :tangle "/doas::/etc/fstab"
 <<fstab>>
 #+END_SRC
   
 + current dir
 
 #+NAME: fstab-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/fstab"
+#+BEGIN_SRC conf :tangle "etc/fstab"
 <<fstab>>
 #+END_SRC
 
@@ -309,14 +309,14 @@ mount.devfs;
 + root dir
 
 #+NAME: jail-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/jail.conf"
+#+BEGIN_SRC conf :tangle "/doas::/etc/jail.conf"
 <<jail>>
 #+END_SRC
   
 + current dir
 
 #+NAME: jail-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/jail.conf"
+#+BEGIN_SRC conf :tangle "etc/jail.conf"
 <<jail>>
 #+END_SRC
 
@@ -671,14 +671,14 @@ russian|Russian Users Accounts:\
 + root dir
 
 #+NAME: login-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/login.conf"
+#+BEGIN_SRC conf :tangle "/doas::/etc/login.conf"
 <<login>>
 #+END_SRC
   
 + current dir
 
 #+NAME: login-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/login.conf"
+#+BEGIN_SRC conf :tangle "etc/login.conf"
 <<login>>
 #+END_SRC
 
@@ -788,14 +788,14 @@ pass out quick on $int_if all modulate state
 + root dir
 
 #+NAME: pf.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/pf.conf"
+#+BEGIN_SRC conf :tangle "/doas::/etc/pf.conf"
 <<pf.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: pf.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/pf.conf"
+#+BEGIN_SRC conf :tangle "etc/pf.conf"
 <<pf.conf>>
 #+END_SRC
 
@@ -1012,14 +1012,14 @@ gateway_enable="YES"
 + root dir
 
 #+NAME: rc.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/rc.conf"
+#+BEGIN_SRC conf :tangle "/doas::/etc/rc.conf"
 <<rc.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: rc.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/rc.conf"
+#+BEGIN_SRC conf :tangle "etc/rc.conf"
 <<rc.conf>>
 #+END_SRC
 
@@ -1057,14 +1057,14 @@ options edns0
 + root dir
 
 #+NAME: resolv.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/resolv.conf"
+#+BEGIN_SRC conf :tangle "/doas::/etc/resolv.conf"
 <<resolv.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: resolv.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/resolv.conf"
+#+BEGIN_SRC conf :tangle "etc/resolv.conf"
 <<resolv.conf>>
 #+END_SRC
 
@@ -1208,14 +1208,14 @@ net.inet.ip.forwarding=1
 + root dir
 
 #+NAME: sysctl.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/sysctl.conf"
+#+BEGIN_SRC conf :tangle "/doas::/etc/sysctl.conf"
 <<sysctl.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: sysctl.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/sysctl.conf"
+#+BEGIN_SRC conf :tangle "etc/sysctl.conf"
 <<sysctl.conf>>
 #+END_SRC
 
@@ -1291,14 +1291,14 @@ rcons	"/usr/libexec/getty std.115200"	vt100	onifconsole insecure
 + root dir
 
 #+NAME: ttys-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/ttys"
+#+BEGIN_SRC conf :tangle "/doas::/etc/ttys"
 <<ttys>>
 #+END_SRC
   
 + current dir
 
 #+NAME: ttys-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/ttys"
+#+BEGIN_SRC conf :tangle "etc/ttys"
 <<ttys>>
 #+END_SRC
 
@@ -1347,14 +1347,14 @@ server:
 + root dir
 
 #+NAME: custom.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/unbound/conf.d/custom.conf"
+#+BEGIN_SRC conf :tangle "/doas::/etc/unbound/conf.d/custom.conf"
 <<custom.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: custom.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/unbound/conf.d/custom.conf"
+#+BEGIN_SRC conf :tangle "etc/unbound/conf.d/custom.conf"
 <<custom.conf>>
 #+END_SRC
 
@@ -1389,14 +1389,14 @@ forward-zone:
 + root dir
 
 #+NAME: forward.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/unbound/forward.conf"
+#+BEGIN_SRC conf :tangle "/doas::/etc/unbound/forward.conf"
 <<forward.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: forward.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/unbound/forward.conf"
+#+BEGIN_SRC conf :tangle "etc/unbound/forward.conf"
 <<forward.conf>>
 #+END_SRC
 
@@ -1420,14 +1420,14 @@ forward-zone:
 + root dir
 
 #+NAME: unbound_outgoing_interface-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/etc/unbound/unbound_outgoing_interface"
+#+BEGIN_SRC conf :tangle "/doas::/etc/unbound/unbound_outgoing_interface"
 <<unbound_outgoing_interface>>
 #+END_SRC
   
 + current dir
 
 #+NAME: unbound_outgoing_interface-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "etc/unbound/unbound_outgoing_interface"
+#+BEGIN_SRC conf :tangle "etc/unbound/unbound_outgoing_interface"
 <<unbound_outgoing_interface>>
 #+END_SRC
 
@@ -1479,14 +1479,14 @@ run_rc_command "$1"
 + root dir
 
 #+NAME: laggpf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/rc.d/laggpf" :tangle-mode (identity #o755)
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/rc.d/laggpf" :tangle-mode (identity #o755)
 <<laggpf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: laggpf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/rc.d/laggpf" :tangle-mode (identity #o755)
+#+BEGIN_SRC conf :tangle "usr/local/etc/rc.d/laggpf" :tangle-mode (identity #o755)
 <<laggpf>>
 #+END_SRC
 
@@ -1546,14 +1546,14 @@ run_rc_command $1
 + root dir
 
 #+NAME: musicpd-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/rc.d/musicpd" :tangle-mode (identity #o755)
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/rc.d/musicpd" :tangle-mode (identity #o755)
 <<musicpd>>
 #+END_SRC
   
 + current dir
 
 #+NAME: musicpd-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/rc.d/musicpd" :tangle-mode (identity #o755)
+#+BEGIN_SRC conf :tangle "usr/local/etc/rc.d/musicpd" :tangle-mode (identity #o755)
 <<musicpd>>
 #+END_SRC
 
@@ -1588,14 +1588,14 @@ Consumer:Mute			1 0 mixer vol 0
 + root dir
 
 #+NAME: usbhidaction.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/usbhidaction.conf"
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/usbhidaction.conf"
 <<usbhidaction.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: usbhidaction.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/usbhidaction.conf"
+#+BEGIN_SRC conf :tangle "usr/local/etc/usbhidaction.conf"
 <<usbhidaction.conf>>
 #+END_SRC
 
@@ -1642,14 +1642,14 @@ attach 100 {
 + root dir
 
 #+NAME: devd.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/devd/devd.conf"
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/devd/devd.conf"
 <<devd.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: devd.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/devd/devd.conf"
+#+BEGIN_SRC conf :tangle "usr/local/etc/devd/devd.conf"
 <<devd.conf>>
 #+END_SRC
 
@@ -2733,14 +2733,14 @@ privacy_level = 1
 + root dir
 
 #+NAME: dnscrypt-proxy.toml-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
 <<dnscrypt-proxy.toml>>
 #+END_SRC
   
 + current dir
 
 #+NAME: dnscrypt-proxy.toml-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
+#+BEGIN_SRC conf :tangle "usr/local/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
 <<dnscrypt-proxy.toml>>
 #+END_SRC
 
@@ -2774,14 +2774,14 @@ Poudriere: {
 + root dir
 
 #+NAME: pkg/repos/poudriere.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/pkg/repos/poudriere.conf"
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/pkg/repos/poudriere.conf"
 <<pkg/repos/poudriere.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: pkg/repos/poudriere.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/pkg/repos/poudriere.conf"
+#+BEGIN_SRC conf :tangle "usr/local/etc/pkg/repos/poudriere.conf"
 <<pkg/repos/poudriere.conf>>
 #+END_SRC
 
@@ -2941,14 +2941,14 @@ permit nopass keepenv root as root
 + root dir
 
 #+NAME: doas-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/doas.conf"
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/doas.conf"
 <<doas>>
 #+END_SRC
   
 + current dir
 
 #+NAME: doas-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/doas.conf"
+#+BEGIN_SRC conf :tangle "usr/local/etc/doas.conf"
 <<doas>>
 #+END_SRC
 
@@ -3309,14 +3309,14 @@ PKG_REPO_SIGNING_KEY=/usr/local/etc/ssl/keys/poudriere.key
 + root dir
 
 #+NAME: poudriere.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/poudriere.conf"
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/poudriere.conf"
 <<poudriere.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: poudriere.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/poudriere.conf"
+#+BEGIN_SRC conf :tangle "usr/local/etc/poudriere.conf"
 <<poudriere.conf>>
 #+END_SRC
 
@@ -3342,14 +3342,14 @@ DISABLE_LICENSES=yes
 + root dir
 
 #+NAME: make.conf-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/poudriere.d/make.conf"
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/poudriere.d/make.conf"
 <<make.conf>>
 #+END_SRC
   
 + current dir
 
 #+NAME: make.conf-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/poudriere.d/make.conf"
+#+BEGIN_SRC conf :tangle "usr/local/etc/poudriere.d/make.conf"
 <<make.conf>>
 #+END_SRC
 
@@ -3375,13 +3375,13 @@ www/linux-widevine-cdm
 + root dir
 
 #+NAME: port-list-root-dir
-#+BEGIN_SRC conf :noweb yes :tangle "/doas::/usr/local/etc/poudriere.d/port-list"
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/poudriere.d/port-list"
 <<port-list>>
 #+END_SRC
   
 + current dir
 
 #+NAME: port-list-current-dir
-#+BEGIN_SRC conf :noweb yes :tangle "usr/local/etc/poudriere.d/port-list"
+#+BEGIN_SRC conf :tangle "usr/local/etc/poudriere.d/port-list"
 <<port-list>>
 #+END_SRC
