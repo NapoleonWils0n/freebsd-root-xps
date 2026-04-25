@@ -1296,7 +1296,6 @@ rcons	"/usr/libexec/getty std.115200"	vt100	onifconsole insecure
 #=========================================================================#
 
 server:
-# include: "/etc/unbound/unbound_outgoing_interface"
 	verbosity: 1
 	access-control: 0.0.0.0/0 refuse
 	access-control: 127.0.0.0/8 allow
@@ -1312,8 +1311,6 @@ server:
 	
         # dont query localhost needed for dnscrypt-proxy
         do-not-query-localhost: no
-# remote-control:
-#	control-enable: no
 #+END_SRC
 
 ****** custom.conf tangle
@@ -1375,37 +1372,6 @@ forward-zone:
 #+NAME: forward.conf-current-dir
 #+BEGIN_SRC conf :tangle "etc/unbound/forward.conf"
 <<forward.conf>>
-#+END_SRC
-
-**** unbound_outgoing_interface
-
-#+begin_example
-/etc/unbound/unbound_outgoing_interface
-#+end_example
-
-***** unbound_outgoing_interface config
-
-#+NAME: unbound_outgoing_interface
-#+BEGIN_SRC conf
-#+END_SRC
-
-***** unbound_outgoing_interface tangle
-:PROPERTIES:
-:ORDERED:  t
-:END:
-
-+ root dir
-
-#+NAME: unbound_outgoing_interface-root-dir
-#+BEGIN_SRC conf :tangle "/doas::/etc/unbound/unbound_outgoing_interface"
-<<unbound_outgoing_interface>>
-#+END_SRC
-  
-+ current dir
-
-#+NAME: unbound_outgoing_interface-current-dir
-#+BEGIN_SRC conf :tangle "etc/unbound/unbound_outgoing_interface"
-<<unbound_outgoing_interface>>
 #+END_SRC
 
 ** /usr/local/etc
