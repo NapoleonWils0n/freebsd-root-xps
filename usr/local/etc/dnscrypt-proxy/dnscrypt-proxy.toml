@@ -28,7 +28,7 @@
 ## Remove the leading # first to enable this; lines starting with # are ignored.
 
 # server_names = ['scaleway-fr', 'google', 'yandex', 'cloudflare']
-server_names = ['google']
+server_names = ['quad9-dnscrypt-ip4-filter-pri', 'google', 'cloudflare']
 
 
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
@@ -82,10 +82,10 @@ odoh_servers = false
 require_dnssec = true
 
 # Server must not log user queries (declarative)
-require_nolog = true
+require_nolog = false
 
 # Server must not enforce its own blocklist (for parental control, ads blocking...)
-require_nofilter = true
+require_nofilter = false
 
 # Server names to avoid even if they match all criteria
 disabled_server_names = []
@@ -417,7 +417,7 @@ netprobe_address = '9.9.9.9:53'
 ## This makes things faster when there is no IPv6 connectivity, but can
 ## also cause reliability issues with some stub resolvers.
 
-block_ipv6 = false
+block_ipv6 = true
 
 
 ## Immediately respond to A and AAAA queries for host names without a domain name
