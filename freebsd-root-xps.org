@@ -825,7 +825,7 @@ zfs_enable="YES"
 clear_tmp_enable="YES"
 syslogd_flags="-ss"
 hostname="pollux"
-local_unbound_enable="YES"
+local_unbound_enable="NO"
 sshd_enable="NO"
 moused_enable="YES"
 
@@ -1662,7 +1662,8 @@ forward-zone:
 ## Remove the leading # first to enable this; lines starting with # are ignored.
 
 # server_names = ['scaleway-fr', 'google', 'yandex', 'cloudflare']
-server_names = ['quad9-dnscrypt-ip4-filter-pri', 'google', 'cloudflare']
+#server_names = ['quad9-dnscrypt-ip4-filter-pri', 'google', 'cloudflare']
+server_names = ['quad9-dnscrypt-ip4-core', 'google', 'cloudflare']
 
 
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
