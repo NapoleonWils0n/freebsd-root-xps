@@ -29,7 +29,6 @@
 
 # server_names = ['scaleway-fr', 'google', 'yandex', 'cloudflare']
 #server_names = ['quad9-dnscrypt-ip4-filter-pri', 'google', 'cloudflare']
-#server_names = ['quad9-dnscrypt-ip4-core', 'google', 'cloudflare']
 server_names = ['quad9-dnscrypt-ip4-filter-pri']
 
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
