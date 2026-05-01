@@ -837,7 +837,7 @@ moused_enable="NO"
 # Set dumpdev to "AUTO" to enable crash dumps, "NO" to disable
 #=========================================================================#
 
-dumpdev="AUTO"
+dumpdev="NO"
 
 
 #=========================================================================#
@@ -1107,7 +1107,6 @@ security.bsd.see_jail_proc=0
 security.bsd.unprivileged_read_msgbuf=0
 security.bsd.unprivileged_proc_debug=0
 kern.randompid=1
-kern.coredump=0
 
 
 #=========================================================================#
