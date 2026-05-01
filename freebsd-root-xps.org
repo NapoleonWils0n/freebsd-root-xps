@@ -154,6 +154,10 @@ net.fibs=2
 #+BEGIN_SRC conf
 [localrules=5]
 add path 'da*' mode 0660 group operator
+add path 'dri/*' mode 0660 group video
+add path 'drm/*' mode 0660 group video
+add path 'input/*' mode 0660 group video
+add path 'input/event*' mode 0660 group video
 
 [jail=7]
 add include $devfsrules_hide_all
@@ -827,7 +831,7 @@ syslogd_flags="-ss"
 hostname="pollux"
 local_unbound_enable="NO"
 sshd_enable="NO"
-moused_enable="YES"
+moused_enable="NO"
 
 #=========================================================================#
 # Set dumpdev to "AUTO" to enable crash dumps, "NO" to disable
@@ -865,7 +869,7 @@ economy_cx_lowest="Cmax"
 # kld list 
 #=========================================================================#
 
-kld_list="i915kms nvidia-modeset nvidia-drm nvidia_gsp_tu10x_fw linux linux64 ext2fs mac_priority fusefs"
+kld_list="nvidia-modeset nvidia-drm nvidia_gsp_tu10x_fw linux linux64 i915kms ext2fs mac_priority fusefs"
 
 
 #=========================================================================#

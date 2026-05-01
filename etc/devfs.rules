@@ -1,5 +1,9 @@
 [localrules=5]
 add path 'da*' mode 0660 group operator
+add path 'dri/*' mode 0660 group video
+add path 'drm/*' mode 0660 group video
+add path 'input/*' mode 0660 group video
+add path 'input/event*' mode 0660 group video
 
 [jail=7]
 add include $devfsrules_hide_all
