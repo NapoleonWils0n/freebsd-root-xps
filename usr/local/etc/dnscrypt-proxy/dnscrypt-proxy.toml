@@ -29,8 +29,8 @@
 
 # server_names = ['scaleway-fr', 'google', 'yandex', 'cloudflare']
 #server_names = ['quad9-dnscrypt-ip4-filter-pri', 'google', 'cloudflare']
-server_names = ['quad9-dnscrypt-ip4-core', 'google', 'cloudflare']
-
+#server_names = ['quad9-dnscrypt-ip4-core', 'google', 'cloudflare']
+server_names = ['quad9-dnscrypt-ip4-filter-pri']
 
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
 ## Example with both IPv4 and IPv6:
@@ -80,7 +80,7 @@ odoh_servers = false
 ## Require servers defined by remote sources to satisfy specific properties
 
 # Server must support DNS security extensions (DNSSEC)
-require_dnssec = true
+require_dnssec = false
 
 # Server must not log user queries (declarative)
 require_nolog = false

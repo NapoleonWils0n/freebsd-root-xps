@@ -969,6 +969,7 @@ laggpf_enable="YES"
 #=========================================================================#
 
 unbound_enable="YES"
+unbound_anchor_enable="YES"
 
 
 #=========================================================================#
@@ -1553,7 +1554,7 @@ server:
 	hide-version: yes
 	harden-glue: yes
 	harden-dnssec-stripped: yes
-        module-config: "validator iterator"
+        module-config: "validator"
 
         # Ensure it's pointing to your updated anchor
         auto-trust-anchor-file: "/usr/local/etc/unbound/root.key"
@@ -1670,8 +1671,8 @@ forward-zone:
 
 # server_names = ['scaleway-fr', 'google', 'yandex', 'cloudflare']
 #server_names = ['quad9-dnscrypt-ip4-filter-pri', 'google', 'cloudflare']
-server_names = ['quad9-dnscrypt-ip4-core', 'google', 'cloudflare']
-
+#server_names = ['quad9-dnscrypt-ip4-core', 'google', 'cloudflare']
+server_names = ['quad9-dnscrypt-ip4-filter-pri']
 
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
 ## Example with both IPv4 and IPv6:
@@ -1721,7 +1722,7 @@ odoh_servers = false
 ## Require servers defined by remote sources to satisfy specific properties
 
 # Server must support DNS security extensions (DNSSEC)
-require_dnssec = true
+require_dnssec = false
 
 # Server must not log user queries (declarative)
 require_nolog = false
