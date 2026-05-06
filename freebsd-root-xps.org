@@ -127,14 +127,14 @@ net.fibs=2
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: loader.conf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/boot/loader.conf"
 <<loader.conf>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: loader.conf-current-dir
 #+BEGIN_SRC conf :tangle "boot/loader.conf"
@@ -176,14 +176,14 @@ add path 'speaker*' unhide
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: devfs.rules-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/etc/devfs.rules"
 <<devfs.rules>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: devfs.rules-current-dir
 #+BEGIN_SRC conf :tangle "etc/devfs.rules"
@@ -210,14 +210,14 @@ add_new_resolv_conf() {
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: dhclient-enter-hooks-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/etc/dhclient-enter-hooks"
 <<dhclient-enter-hooks>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: dhclient-enter-hooks-current-dir
 #+BEGIN_SRC conf :tangle "etc/dhclient-enter-hooks"
@@ -264,14 +264,14 @@ fdesc           /dev/fd                 fdescfs         rw      0       0
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: fstab-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/etc/fstab"
 <<fstab>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: fstab-current-dir
 #+BEGIN_SRC conf :tangle "etc/fstab"
@@ -316,14 +316,14 @@ mount.devfs;
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: jail-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/etc/jail.conf"
 <<jail>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: jail-current-dir
 #+BEGIN_SRC conf :tangle "etc/jail.conf"
@@ -678,14 +678,14 @@ russian|Russian Users Accounts:\
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: login-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/etc/login.conf"
 <<login>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: login-current-dir
 #+BEGIN_SRC conf :tangle "etc/login.conf"
@@ -792,14 +792,14 @@ pass out quick on $int_if all modulate state
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: pf.conf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/etc/pf.conf"
 <<pf.conf>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: pf.conf-current-dir
 #+BEGIN_SRC conf :tangle "etc/pf.conf"
@@ -1016,14 +1016,14 @@ podman_enable=YES
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: rc.conf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/etc/rc.conf"
 <<rc.conf>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: rc.conf-current-dir
 #+BEGIN_SRC conf :tangle "etc/rc.conf"
@@ -1061,14 +1061,14 @@ options edns0
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: resolv.conf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/etc/resolv.conf"
 <<resolv.conf>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: resolv.conf-current-dir
 #+BEGIN_SRC conf :tangle "etc/resolv.conf"
@@ -1212,14 +1212,14 @@ net.pf.filter_local=1
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: sysctl.conf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/etc/sysctl.conf"
 <<sysctl.conf>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: sysctl.conf-current-dir
 #+BEGIN_SRC conf :tangle "etc/sysctl.conf"
@@ -1295,14 +1295,14 @@ rcons	"/usr/libexec/getty std.115200"	vt100	onifconsole insecure
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: ttys-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/etc/ttys"
 <<ttys>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: ttys-current-dir
 #+BEGIN_SRC conf :tangle "etc/ttys"
@@ -1354,14 +1354,14 @@ run_rc_command "$1"
 :ORDERED:  t
 :END:
 
-+ root dir
+****** root dir
 
 #+NAME: laggpf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/rc.d/laggpf" :tangle-mode (identity #o755)
 <<laggpf>>
 #+END_SRC
   
-+ current dir
+****** current dir
 
 #+NAME: laggpf-current-dir
 #+BEGIN_SRC conf :tangle "usr/local/etc/rc.d/laggpf" :tangle-mode (identity #o755)
@@ -1421,14 +1421,14 @@ run_rc_command $1
 :ORDERED:  t
 :END:
 
-+ root dir
+****** root dir
 
 #+NAME: musicpd-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/rc.d/musicpd" :tangle-mode (identity #o755)
 <<musicpd>>
 #+END_SRC
   
-+ current dir
+****** current dir
 
 #+NAME: musicpd-current-dir
 #+BEGIN_SRC conf :tangle "usr/local/etc/rc.d/musicpd" :tangle-mode (identity #o755)
@@ -1463,14 +1463,14 @@ Consumer:Mute			1 0 mixer vol 0
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: usbhidaction.conf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/usbhidaction.conf"
 <<usbhidaction.conf>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: usbhidaction.conf-current-dir
 #+BEGIN_SRC conf :tangle "usr/local/etc/usbhidaction.conf"
@@ -1517,14 +1517,14 @@ attach 100 {
 :ORDERED:  t
 :END:
 
-+ root dir
+****** root dir
 
 #+NAME: devd.conf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/devd/devd.conf"
 <<devd.conf>>
 #+END_SRC
   
-+ current dir
+****** current dir
 
 #+NAME: devd.conf-current-dir
 #+BEGIN_SRC conf :tangle "usr/local/etc/devd/devd.conf"
@@ -1573,14 +1573,14 @@ include: "/usr/local/etc/unbound/forward.conf"
 :ORDERED:  t
 :END:
 
-+ root dir
+****** root dir
 
 #+NAME: unbound.conf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/unbound/unbound.conf"
 <<unbound.conf>>
 #+END_SRC
   
-+ current dir
+****** current dir
 
 #+NAME: unbound.conf-current-dir
 #+BEGIN_SRC conf :tangle "usr/local/etc/unbound/unbound.conf"
@@ -1615,14 +1615,14 @@ forward-zone:
 :ORDERED:  t
 :END:
 
-+ root dir
+****** root dir
 
 #+NAME: forward.conf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/unbound/forward.conf"
 <<forward.conf>>
 #+END_SRC
   
-+ current dir
+****** current dir
 
 #+NAME: forward.conf-current-dir
 #+BEGIN_SRC conf :tangle "usr/local/etc/unbound/forward.conf"
@@ -2706,14 +2706,14 @@ privacy_level = 1
 :ORDERED:  t
 :END:
 
-+ root dir
+****** root dir
 
 #+NAME: dnscrypt-proxy.toml-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
 <<dnscrypt-proxy.toml>>
 #+END_SRC
   
-+ current dir
+****** current dir
 
 #+NAME: dnscrypt-proxy.toml-current-dir
 #+BEGIN_SRC conf :tangle "usr/local/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
@@ -2747,14 +2747,14 @@ Poudriere: {
 :ORDERED:  t
 :END:
 
-+ root dir
+******* root dir
 
 #+NAME: pkg/repos/poudriere.conf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/pkg/repos/poudriere.conf"
 <<pkg/repos/poudriere.conf>>
 #+END_SRC
   
-+ current dir
+******* current dir
 
 #+NAME: pkg/repos/poudriere.conf-current-dir
 #+BEGIN_SRC conf :tangle "usr/local/etc/pkg/repos/poudriere.conf"
@@ -2815,14 +2815,14 @@ permit nopass keepenv root as root
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: doas-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/doas.conf"
 <<doas>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: doas-current-dir
 #+BEGIN_SRC conf :tangle "usr/local/etc/doas.conf"
@@ -2936,14 +2936,14 @@ location = "ghcr.io"
 :ORDERED:  t
 :END:
 
-+ root dir
+***** root dir
 
 #+NAME: registries.conf-root-dir
 #+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/containers/registries.conf"
 <<registries.conf>>
 #+END_SRC
   
-+ current dir
+***** current dir
 
 #+NAME: registries.conf-current-dir
 #+BEGIN_SRC conf :tangle "usr/local/etc/containers/registries.conf"
