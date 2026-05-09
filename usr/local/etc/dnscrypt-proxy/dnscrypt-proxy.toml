@@ -475,7 +475,7 @@ reject_ttl = 10
 
 ## Enable a DNS cache to reduce latency and outgoing traffic
 
-cache = false
+cache = true
 
 
 ## Cache size
