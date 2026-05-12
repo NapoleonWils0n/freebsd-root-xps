@@ -6,7 +6,8 @@ add path 'input/*' mode 0660 group video
 add path 'input/event*' mode 0660 group video
 
 [devfsrules_jail=4]
-add include $devfsrules_jail
+add include $devfsrules_unhide_basic
+add include $devfsrules_unhide_login
 add path 'mixer*' unhide
 add path 'dsp*' unhide
 add path 'dri*' unhide
