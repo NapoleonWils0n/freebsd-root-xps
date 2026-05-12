@@ -152,6 +152,15 @@ add path 'drm/*' mode 0660 group video
 add path 'input/*' mode 0660 group video
 add path 'input/event*' mode 0660 group video
 
+[devfsrules_jail=4]
+add include $devfsrules_jail
+add path 'mixer*' unhide
+add path 'dsp*' unhide
+add path 'dri*' unhide
+add path 'drm*' unhide
+add path 'nvidia*' unhide
+add path 'speaker*' unhide
+
 [jail=7]
 add include $devfsrules_hide_all
 add include $devfsrules_unhide_basic
