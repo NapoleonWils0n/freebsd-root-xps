@@ -4,6 +4,7 @@ add path 'dri/*' mode 0660 group video
 add path 'drm/*' mode 0660 group video
 add path 'input/*' mode 0660 group video
 add path 'input/event*' mode 0660 group video
+add path 'nvidia*' mode 0660 group video
 
 [devfsrules_jail=4]
 add include $devfsrules_unhide_basic
