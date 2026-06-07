@@ -873,7 +873,7 @@ economy_cx_lowest="Cmax"
 # kld list 
 #=========================================================================#
 
-kld_list="nvidia-modeset nvidia-drm nvidia_gsp_tu10x_fw linux linux64 i915kms ext2fs mac_priority fusefs"
+kld_list="nvidia-modeset nvidia-drm nvidia_gsp_tu10x_fw linux linux64 i915kms ext2fs mac_priority fusefs vmm nmdm"
 
 
 #=========================================================================#
@@ -1013,6 +1013,15 @@ syncthing_group="djwilcox"
 #=========================================================================#
 
 podman_enable=YES
+
+
+#=========================================================================#
+# bhyve
+#=========================================================================#
+
+vm_enable=YES
+vm_dir="zfs:zroot/home/djwilcox/vm"
+gateway_enable=YES
 #+END_SRC
 
 **** rc.conf tangle
@@ -1209,6 +1218,14 @@ net.add_addr_allfibs=0
 #=========================================================================#
 
 net.pf.filter_local=1
+
+
+#=========================================================================#
+# bhyve
+#=========================================================================#
+
+net.link.tap.up_on_open=1
+net.inet.ip.forwarding=1
 #+END_SRC
 
 **** sysctl.conf tangle
