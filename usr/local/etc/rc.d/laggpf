@@ -21,6 +21,7 @@ laggpf_start()
 {
     service netif restart lagg0
     service pf restart
+    ifconfig vm-public addm lagg0 2>/dev/null || true
 }
 
 run_rc_command "$1"
