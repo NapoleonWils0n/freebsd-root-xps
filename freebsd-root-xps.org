@@ -1525,6 +1525,16 @@ attach 100 {
 	#
         action "/usr/bin/usbhidaction -f $device-name -c /usr/local/etc/usbhidaction.conf";
 };
+
+
+#=========================================================================#
+# Yeti Blue Snowball mic set volume to 100%
+#=========================================================================#
+
+attach 100 {
+    match "device-name" "pcm3";
+    action "mixer -f /dev/mixer3 mic.volume=1.0";
+};
 #+END_SRC
 
 ***** devd.conf tangle
