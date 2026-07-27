@@ -2875,6 +2875,116 @@ permit nopass keepenv root as root
 <<doas>>
 #+END_SRC
 
+*** dict
+
+#+begin_example
+/usr/local/etc/dict.conf
+#+end_example
+
+**** dict config
+
+#+NAME: dict
+#+BEGIN_SRC conf
+#=========================================================================#
+# This file is used to specify the dict servers to talk to.  See the
+# CONFIGURATION section of dict(1) for the full syntax.
+#
+# A list of public dict servers is available at
+#	https://dict-servers.catflap.org/
+# but one of the following should work.
+#
+#=========================================================================#
+
+server localhost
+server dict.org
+server dict.catflap.org
+server dict.trit.net
+#+END_SRC
+
+**** dict tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
+***** root dir
+
+#+NAME: dict-root-dir
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/dict.conf"
+<<dict>>
+#+END_SRC
+  
+***** current dir
+
+#+NAME: dict-current-dir
+#+BEGIN_SRC conf :tangle "usr/local/etc/dict.conf"
+<<dict>>
+#+END_SRC
+
+*** dictd
+
+#+begin_example
+/usr/local/etc/dictd.conf
+#+end_example
+
+**** dictd config
+
+#+NAME: dictd
+#+BEGIN_SRC conf
+#=========================================================================#
+# /usr/local/etc/dictd.conf
+#=========================================================================#
+
+global {
+    listen_to 127.0.0.1
+    port 2628
+    pid_file "/var/run/dictd.pid"
+}
+
+database gcide {
+    data "/usr/local/share/dictd/gcide.dict.dz"
+    index "/usr/local/share/dictd/gcide.index"
+}
+
+database jargon {
+    data "/usr/local/share/dictd/jargon.dict.dz"
+    index "/usr/local/share/dictd/jargon.index"
+}
+
+database foldoc {
+    data "/usr/local/share/dictd/foldoc.dict.dz"
+    index "/usr/local/share/dictd/foldoc.index"
+}
+
+database wn {
+    data "/usr/local/share/dictd/wn.dict.dz"
+    index "/usr/local/share/dictd/wn.index"
+}
+
+database moby-thesaurus {
+    data "/usr/local/share/dictd/moby-thesaurus.dict"
+    index "/usr/local/share/dictd/moby-thesaurus.index"
+}
+#+END_SRC
+
+**** dictd tangle
+:PROPERTIES:
+:ORDERED:  t
+:END:
+
+***** root dir
+
+#+NAME: dictd-root-dir
+#+BEGIN_SRC conf :tangle "/doas::/usr/local/etc/dictd.conf"
+<<dictd>>
+#+END_SRC
+  
+***** current dir
+
+#+NAME: dictd-current-dir
+#+BEGIN_SRC conf :tangle "usr/local/etc/dictd.conf"
+<<dictd>>
+#+END_SRC
+
 *** registries.conf
 
 registries.conf for podman
